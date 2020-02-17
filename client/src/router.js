@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import Books from './components/Books.vue';
 import Ping from './components/Ping.vue';
 import Main from './components/Main.vue';
+import Tiki from './components/Tiki.vue';
+import Login from './components/Login.vue';
 
 Vue.use(Router);
 
@@ -24,6 +26,16 @@ export default new Router({
       path: '/',
       name: 'Main',
       component: Main,
+    },
+    {
+      path: '/api/tiki',
+      name: 'tiki',
+      component: Tiki,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
     },
   ],
 });
