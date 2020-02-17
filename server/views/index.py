@@ -7,6 +7,7 @@ index_blueprint = Blueprint('index', '__name__', url_prefix="index")
 def index():
   return "Hello World!"
 
+
 @index_blueprint.route("/yihi")
 def yihi():
   return "ugu chu"
