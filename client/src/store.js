@@ -42,7 +42,7 @@ export default new Vuex.Store({
         login({ commit}, loginObj) {
             // Login => token return
             axios
-                .post("/api/login", loginObj)
+                .post("/login", loginObj)
                 .then(res => {
                     let response = res.data
                     console.log(response)
@@ -56,7 +56,7 @@ export default new Vuex.Store({
                                 }
                             }
                             commit('loginSuccess')
-                            router.push("/dashboard")
+                            router.push("/Books")
                         }
                     else {
                         alert(' Check your Id&PW 1')

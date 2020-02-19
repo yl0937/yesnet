@@ -2,29 +2,15 @@ import uuid
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from .api_page import api
+from yesnet.server.controller.api import api
+from yesnet.server.controller.views import view
+
 
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
-
 app.register_blueprint(api)
-
-
-# Login Check
-@app.route('/login', methods=['POST'])
-def login():
-    login_email = request.json['email']
-    # login_pwd = bcrypt.hashpw(request.json['password'].encode('UTF-8'), bcrypt.gensalt())
-    login_pwd = request.json['password'].encode('UTF-8')
-    login_pass = login_pwd.decode('ascii')
-
-    return jsonify({
-            'code': 200,
-            'access_token': 'token'
-        })
-
-
+app.register_blueprint(view)
 BOOKS = [
     {
         'id': uuid.uuid4().hex,

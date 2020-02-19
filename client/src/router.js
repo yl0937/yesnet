@@ -5,6 +5,7 @@ import Ping from './components/Ping.vue';
 import Main from './components/Main.vue';
 import Tiki from './components/Tiki.vue';
 import Login from './components/Login.vue';
+import Dapp from './components/Dapp.vue';
 
 Vue.use(Router);
 
@@ -28,7 +29,7 @@ export default new Router({
       component: Main,
     },
     {
-      path: '/api/tiki',
+      path: '/tiki',
       name: 'tiki',
       component: Tiki,
     },
@@ -36,6 +37,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/dapp',
+      name: 'Dapp',
+      component: Dapp,
     },
   ],
 });

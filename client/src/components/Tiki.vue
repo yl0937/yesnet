@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     getMessage() {
-      const path = 'http://localhost:5000/api/tiki';
+      const path = 'http://localhost:5000/tiki';
       axios.get(path)
         .then((res) => {
           this.msg = res.data;
