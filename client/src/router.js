@@ -2,10 +2,15 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Books from './components/Books.vue';
 import Ping from './components/Ping.vue';
-import Main from './components/Main.vue';
 import Tiki from './components/Tiki.vue';
 import Login from './components/Login.vue';
-import Dapp from './components/Dapp.vue';
+import DappUpload from './components/DappUpload.vue';
+import DAppsUpList from './components/DAppsList';
+import Dashboard from './components/Dashboard';
+import DeployedDApps from './components/DeployedDApps';
+import Home from "./components/Home";
+import WatchBlock from "./components/WatchBlock";
+import WatchTX from "./components/WatchTX";
 
 Vue.use(Router);
 
@@ -25,8 +30,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Main',
-      component: Main,
+      name: 'Home',
+      component: Home,
     },
     {
       path: '/tiki',
@@ -39,9 +44,34 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/dapp',
+      path: '/dappupload',
       name: 'Dapp',
-      component: Dapp,
+      component: DappUpload,
+    },
+    {
+      path: '/dapplist',
+      name: 'DappList',
+      component: DAppsUpList,
+    },
+    {
+      path: '/dashboard',
+      name: 'DashBoard',
+      component: Dashboard,
+    },
+    {
+      path: '/deployeddapps',
+      name: 'DeployedDApps',
+      component: DeployedDApps,
+    },
+    {
+      path: '/watchblock',
+      name: 'WatchBlock',
+      component: WatchBlock,
+    },
+    {
+      path: '/watchtx',
+      name: 'WatchTx',
+      component: WatchTX,
     },
   ],
 });

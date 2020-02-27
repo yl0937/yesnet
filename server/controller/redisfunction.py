@@ -1,5 +1,3 @@
-"uninstall redis: line3,14,15"
-
 import redis
 import json
 import time
@@ -26,12 +24,8 @@ class MsgHandler:
       # if there is proper one for the ticket, it returns 404
       resAnswer = '{"code": 404}'
     return resAnswer
-
-  """
-    answer = self._client.hdel(ANSWER_BOARD, answer['ticket'])
-    print("complete delete")
-  """
-
+    # answer = self._client.hdel(ANSWER_BOARD, answer['ticket'])
+    # print("complete delete")
   def hget_wait_response(self, order, seconds=30):
     ticket = order['ticket']
 

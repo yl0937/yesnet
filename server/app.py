@@ -2,15 +2,19 @@ import uuid
 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from yesnet.server.controller.api import api
 from yesnet.server.controller.views import view
+from yesnet.server.controller.login import login_page
+from yesnet.server.controller.api import api_page
+
 
 
 # instantiate the app
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.register_blueprint(api)
 app.register_blueprint(view)
+app.register_blueprint(login_page)
+app.register_blueprint(api_page)
+
 BOOKS = [
     {
         'id': uuid.uuid4().hex,
