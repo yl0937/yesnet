@@ -1,0 +1,91 @@
+<template>
+  <div>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb" style="background-color: #2e2e2e">
+	<li class="breadcrumb-item"><a href="#">Watchers</a></li>
+	<li class="breadcrumb-item active" aria-current="page">Watch Block</li>
+</ol>
+</nav>
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch Block
+	</p>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
+  <div class="input-group-append">
+    <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
+  </div>
+</div>
+
+<json-viewer
+    :value="axiosjsonData"
+    :expand-depth=5
+    copyable
+    boxed
+    sort></json-viewer>
+
+</div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import JsonViewer from 'vue-json-viewer'
+
+  export default {
+    data() {
+      return {
+          token:null,
+          axiosjsonData: 'Write down the Block Number',
+          blockNum: ''
+      }
+},
+    components: {
+    JsonViewer
+    },
+  methods:{
+  getJSONResponse () {
+        const token = sessionStorage.getItem("access_token")
+        //const path = '/api/watchblock'
+
+      this.blockNum = parseInt(this.blockNum)
+
+    axios
+    .post('/api/watchblock',
+        {'blockNum':this.blockNum},
+        {
+        headers: {
+            "Authorization": token
+        }
+    },
+)
+    .then(response => {
+        let code=response.data.result.code
+        let err_name=response.data.result.err_name
+        let reason=response.data.result.reason
+
+       this.axiosjsonData = response.data.result.blockInfo
+        if(code != 200){
+            alert(err_name+reason)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+  }
+
+}
+  }
+</script>
+<style>
+                body { padding:0px;
+                background-color: #f1f2f7;
+                }
+                .yellow {color:#f2b441;}
+                .grey {color: #5d667b;}
+                a:link {color:#f2b441;}
+                .jbGrad02 {background: linear-gradient( to top, white, #e5ffac );}
+                .jbGrad03 {background: linear-gradient( to top, white, #d7d7d7 );}
+                .jbGrad04 {background: linear-gradient( to top, white, #ade9f7 );}
+</style>
