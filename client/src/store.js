@@ -33,17 +33,21 @@ export default new Vuex.Store({
         }
     },
     actions:{
-        getToken() {
-            const token = sessionStorage.getItem("access_token")
-            console.log(token)
-            return token
-        },
+        ping(){
+          axios
+            .post("http://localhost:5000/api/ping")
+            .then(res => {
+              let response = res.data
+              console.log(response)
+            })
+             },
         //try login
         login({ commit}, loginObj) {
             // Login => token return
             axios
-                .post("/login", loginObj)
+                .post("http://localhost:5000/api/login", loginObj)
                 .then(res => {
+                  console.log("Hi yelim")
                     let response = res.data
                     console.log(response)
                     if(response['code'] == '200')
@@ -56,14 +60,14 @@ export default new Vuex.Store({
                                 }
                             }
                             commit('loginSuccess')
-                            router.push("/Books")
+                            router.push("/watchblock")
                         }
                     else {
-                        alert(' Check your Id&PW 1')
+                        alert(' Check your Id&PW 1');
                         }
                 })
                 .catch(() => {
-                           alert(' Check your Id&PW 2')
+                           alert(' Check your Id&PW 2');
                        })
             },
         register({ commit }, registerObj) {
@@ -73,7 +77,6 @@ export default new Vuex.Store({
                 .post("/api/register", registerObj)
                 .then(res => {
                     let response = res.data
-
                     {
                         console.log(response)
                         if (response['code'] == '404') {
@@ -88,18 +91,6 @@ export default new Vuex.Store({
             else {
                 alert('password is not same')
             }
-
-
-        },
-        loginRefresh( {commit} ) {
-            let token = sessionStorage.getItem("access_token");
-            if (token != null) {
-                commit("loginSuccess")
-                router.push("/dashboard")
-            }
-            else
-                commit('loginError')
-
         },
         logout({commit}) {
                 commit("logout")
@@ -107,4 +98,3 @@ export default new Vuex.Store({
             },
     }
 })
-

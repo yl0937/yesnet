@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapState, mapActions} from "vuex"
 import Header from './uxcomponents/Header.vue'
 import sidebar from './uxcomponents/sidebar.vue'
 import Home from './components/Home.vue'

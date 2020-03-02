@@ -42,40 +42,8 @@ import JsonViewer from 'vue-json-viewer'
       }
 },
     components: {
-    JsonViewer
-    },
-  methods:{
-  getJSONResponse () {
-        const token = sessionStorage.getItem("access_token")
-        //const path = '/api/watchblock'
 
-      this.blockNum = parseInt(this.blockNum)
-
-    axios
-    .post('/api/watchblock',
-        {'blockNum':this.blockNum},
-        {
-        headers: {
-            "Authorization": token
-        }
-    },
-)
-    .then(response => {
-        let code=response.data.result.code
-        let err_name=response.data.result.err_name
-        let reason=response.data.result.reason
-
-       this.axiosjsonData = response.data.result.blockInfo
-        if(code != 200){
-            alert(err_name+reason)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-    })
-  }
-
-}
+    }
   }
 </script>
 <style>

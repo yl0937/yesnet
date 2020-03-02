@@ -1,18 +1,20 @@
 <template>
 
     <div>
+    <!-- 상단바 -->
           <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="background-color: #FFE08C"> <!-- 내부 상단 bar-->
+    <ol class="breadcrumb" style="background-color: #f9bd5b">
         <li class="breadcrumb-item"><a href="#">DApps</a></li>
         <li class="breadcrumb-item active" aria-current="page">DApp Upload</li>
     </ol>
     </nav>
-
+    <!-- DApp Deployment -->
     <div class="shadow-sm p-3 mb-4 bg-white rounded">
         <p class="h5" style="padding-bottom: 8px; padding-top:0px;">
             DApp Deployment
         </p>
 
+    <!-- DApps Name/ Description -->
     <div class="input-group mb-3">
 
     <div class="input-group mb-3">
@@ -47,9 +49,10 @@
       </div>
     </div>
 
-    <p>
-    <b-button variant="warning" @click="addDApp">Upload</b-button>
-    <b-button variant="dark" @click="resetForm">Reset</b-button>
+    <!-- 버튼 -->
+    <p style= "text-align: left;">
+    <button type="button" class="btn btn-warning" @click="addDApp">Upload</button>
+    <button type="button" class="btn btn-dark" @click="resetForm">Reset</button>
     </p>
 
 
@@ -116,18 +119,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px;
+.h3 {
+  margin: 40px 500px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.h5 {
+  margin: 15px;
+  font-size: 1.5em;
+  text-align: left;
+  weight:100px;
+
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #FFB2F5;
-}
+
 </style>
