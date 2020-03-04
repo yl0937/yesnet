@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Ping from './components/Ping.vue';
-import Tiki from './components/Tiki.vue';
 import Login from './components/Login.vue';
 import DappUpload from './components/DappUpload.vue';
 import DAppsUpList from './components/DAppsList';
@@ -26,11 +25,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-    },
-    {
-      path: '/tiki',
-      name: 'tiki',
-      component: Tiki,
     },
     {
       path: '/login',

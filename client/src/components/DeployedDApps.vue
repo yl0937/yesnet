@@ -1,195 +1,147 @@
 <template>
-  <div class="home">
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">YesNet</a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
-    </li>
-  </ul>
+<!-- 내부 상단바 -->
+  <div class="first">
+          <nav aria-label="breadcrumb">
+<ol class="breadcrumb" style="background-color: #f9bd5b">
+    <li class="breadcrumb-item"><a href="#">DApps</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Deployed DApp</li>
+</ol>
 </nav>
 
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              DashBoard <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>DApps</span>
-          </h6>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DAppsUpload">
-              DApps Upload
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DAppsList">
-              DApps List
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DeployedDApps">
-              Deployed DApps
-            </router-link>
-          </li>
-        </ul>
+<!-- DApps/Deployed DApp-->
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+    <p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+        <ion-icon name="list-box" class="red"></ion-icon>  Deployed DApp
+    </p>
+  <div>
+  <b-table hover :items="items1" :fields="fields">
+      <template v-slot:function="row">
+        <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+          {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+        </b-button>
+      </template>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>WATCHERS</span>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/WatchBlock">
-              Watch Block
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/WatchTX">
-              Watch TX
-            </router-link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
+      <template v-slot:row-details="row">
+        <b-card>
+        <div>
+  <b-table-simple hover>
+    <b-thead>
+      <b-tr variant="secondary">
+        <b-td>Name</b-td>
+        <b-td>Inputs</b-td>
+        <b-td> </b-td>
+      </b-tr>
+    </b-thead>
+    <b-tbody>
+      <b-tr v-for="(item, index) in functionList">
+        <b-td>{{item.name}}</b-td>
+        <b-td>{{item.inputs}}</b-td>
+        <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">Launch</b-button></div>
+              <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">Launch</b-button></div>
+              <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">Launch</b-button></div>
+              <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">Launch</b-button></div>
+          </b-td>
+      </b-tr>
+    </b-tbody>
+  </b-table-simple>
         </div>
-      </div>
+        </b-card>
+      </template>
 
-      <canvas class="my-4 w  -100" id="myChart" width="1580" height="700">
-      </canvas>
-    </main>
+    </b-table>
   </div>
+  <div>
+    <b-modal
+      id="modal-prevent-closing"
+      ref="modal"
+      title="Submit Parameter"
+      @show="resetModal"
+      @hidden="resetModal"
+      @ok="txhandleOk"
+    >
+     <div>
+      <form ref="form" @submit.stop.prevent="txhandleSubmit">
+        <ul>
+        <li v-for="(method, index) in functionNames">
+        <p>{{method}} Parameter</p>
+
+        <b-form-group
+          :state="nameState"
+          label-for="param-input"
+          valid-feedback="Param is required"
+        >
+          <b-form-input
+            id="name-input"
+            v-model="name[index]"
+            :state="nameState"
+          ></b-form-input>
+        </b-form-group>
+        </li>
+        </ul>
+      </form>
+     </div>
+      <p>Do you want to launch the function?</p>
+    </b-modal>
+
+
+    <b-modal
+      id="modal-prevent-closing2"
+      ref="modal"
+      title="Submit Parameter"
+      @show="resetModal"
+      @hidden="resetModal"
+      @ok="handleOk"
+    >
+     <div>
+      <form ref="form" @submit.stop.prevent="handleSubmit">
+        <ul>
+        <li v-for="(param, index) in functionNames">
+        <p>{{param}} Parameter</p>
+
+        <b-form-group
+          :state="modalState"
+          label-for="param-input"
+          valid-feedback="Param is required"
+        >
+          <b-form-input
+            id="name-input"
+            v-model="paramArr[index]"
+            :state="modalState"
+          ></b-form-input>
+        </b-form-group>
+        </li>
+        </ul>
+      </form>
+     </div>
+      <p>Do you want to launch the function?</p>
+    </b-modal>
+
+      <b-modal id="alertmodal" title="Launch Function(Call)" @ok="alerthandleok">
+        <p class="my-4">Do you want to launch the function?</p>
+      </b-modal>
+
+      <b-modal id="txalertmodal" title="Launch Function(Tx)" @ok="txalerthandleok">
+        <p class="my-4">Do you want to launch the function?</p>
+      </b-modal>
+
 </div>
 </div>
+  </div>
 </template>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+<script>
+</script>
+
 <style scoped>
-body {
-  font-size: .875rem;
+.a {
+  color:black;
 }
 
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
+.h5 {
+  margin: 15px;
+  font-size: 1.5em;
+  text-align: left;
+  weight:100px;
+
 }
-
-/*
- * Sidebar
- */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
-
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-}
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
-
-.sidebar .nav-link.active {
-  color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
-
-/*
- * Content
- */
-
-[role="main"] {
-  padding-top: 133px; /* Space for fixed navbar */
-}
-
-@media (min-width: 768px) {
-  [role="main"] {
-    padding-top: 48px; /* Space for fixed navbar */
-  }
-}
-
-/*
- * Navbar
- */
-
-.navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
-
-.navbar .form-control {
-  padding: .75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
-}
-
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
-}
-
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
-
 </style>

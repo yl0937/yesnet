@@ -50,11 +50,6 @@ def login_required(f):
 
     return decorated_function
 
-
-@api_page.route('/ping', methods=['POST'])
-def ping_pong():
-    return jsonify("pong")
-
 # Login Check
 @api_page.route('/login', methods=['POST'])
 def login():

@@ -1,7 +1,7 @@
 <template>
   <div>
 <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #2e2e2e">
+<ol class="breadcrumb" style="background-color: #f9bd5b">
 	<li class="breadcrumb-item"><a href="#">Watchers</a></li>
 	<li class="breadcrumb-item active" aria-current="page">Watch TX</li>
 </ol>
@@ -85,4 +85,10 @@ import JsonViewer from 'vue-json-viewer'
                 .jbGrad02 {background: linear-gradient( to top, white, #e5ffac );}
                 .jbGrad03 {background: linear-gradient( to top, white, #d7d7d7 );}
                 .jbGrad04 {background: linear-gradient( to top, white, #ade9f7 );}
+.h5 {
+  margin: 15px;
+  font-size: 1.5em;
+  text-align: left;
+  weight:100px;
+}
 </style>

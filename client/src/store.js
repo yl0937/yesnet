@@ -47,7 +47,7 @@ export default new Vuex.Store({
             axios
                 .post("http://localhost:5000/api/login", loginObj)
                 .then(res => {
-                  console.log("Hi yelim")
+                  console.log("test")
                     let response = res.data
                     console.log(response)
                     if(response['code'] == '200')
@@ -74,7 +74,7 @@ export default new Vuex.Store({
             if (registerObj['password'] == registerObj['passwordConfirm'])
             {
             axios
-                .post("/api/register", registerObj)
+                .post("http://localhost:5000/api/register", registerObj)
                 .then(res => {
                     let response = res.data
                     {

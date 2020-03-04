@@ -63,7 +63,6 @@
 <script>
 import axios from 'axios'
 import JsonViewer from 'vue-json-viewer'
-
 export default {
  data() {
       return {
@@ -95,7 +94,6 @@ export default {
        addDApp(){
           const token = sessionStorage.getItem("access_token")
           this.text2=this.text2.replace(/(\n)/gm,"")
-
           axios.post('/api/add_dapp',
             {name:this.name, desc:this.desc, abi:this.text, bin:this.text2},
                 {
@@ -113,7 +111,6 @@ export default {
         })
       }
     }
-
 }
 </script>
 
@@ -127,7 +124,12 @@ export default {
   font-size: 1.5em;
   text-align: left;
   weight:100px;
-
 }
-
+.ul {
+  list-style-type: none;
+  padding: 0;
+}
+.a {
+  color: black;
+}
 </style>

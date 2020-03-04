@@ -1,119 +1,96 @@
 <template>
-      <canvas class="my-4 w  -100" id="myChart" width="1580" height="700">
-      </canvas>
-    </main>
-  </div>
+<!-- 상단바 -->
+<div>
+      <nav aria-label="breadcrumb">
+<ol class="breadcrumb" style="background-color: #f9bd5b">
+   <li class="breadcrumb-item"><a href="#">Home</a></li>
+   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+</ol>
+</nav>
+
+<!-- ETH content -->
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+   <p class="ETH content" style="" size="sm">
+    <ethmodal />
+   </p>
+</div>
+
+<!-- View DApps content-->
+<div class="shadow-sm p-3 mb-4bg-white rounded">
+   <p class="h5" style="padding-bottom: 2px; padding-top: 0;">
+      <ion-icon name="list-box" class="red"></ion-icon>&nbsp; View DApps
+   </p>
+   <hr color="grey" size="2px"  width="100%"/>
+
+<!-- Name, Public, Upload -->
+   <div>
+   <b-table-simple hover>
+    <b-thead head-variant="secondary">
+      <b-tr>
+        <b-th class= "Name"><strong>Name</strong></b-th>
+        <b-th class= "Public"><strong>Public</strong></b-th>
+        <b-th class="UploadTime"><strong>Upload Time</strong></b-th>
+      </b-tr>
+    </b-thead>
+<!-- 작동 안되는거같음 -->
+    <b-tbody>
+      <b-tr v-for="item in items">
+        <b-td>{{item.name}}</b-td>
+        <b-td>{{item.public}}</b-td>
+        <b-td>{{date(item.upload_time.$date)}}</b-td>
+      </b-tr>
+    </b-tbody>
+  </b-table-simple>
+</div>
 </div>
 </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-body {
-  font-size: .875rem;
+.a{
+color: black;
 }
 
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
+.ETH content{
+  margin: 0;
+  font-size: 1.5em;
+  text-align: left;
+}
+.h5 {
+  margin: 0;
+  font-size: 1.5em;
+  text-align: left;
+  weight:100px;
+
 }
 
-/*
- * Sidebar
- */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+.ul,ol {
+  padding-left: 10px;
 }
 
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+.Name{
+  width: 70px;
+  float: left;
+  font-size: 1.1em;
 }
 
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-  }
+.Public{
+ width: 1000px;
+  float: left;
+  font-size: 1.1em;
 }
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
+.UploadTime{
+ width:500px;
+  float: left;
+  font-size: 1.1em;
 }
+ .hr{
+ position: absolute;
+        left: 700px;
+        top: 50px;
 
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
-
-.sidebar .nav-link.active {
-  color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
-
-/*
- * Content
- */
-
-[role="main"] {
-  padding-top: 133px; /* Space for fixed navbar */
-}
-
-@media (min-width: 768px) {
-  [role="main"] {
-    padding-top: 48px; /* Space for fixed navbar */
-  }
-}
-
-/*
- * Navbar
- */
-
-.navbar-brand {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, .25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
-
-.navbar .form-control {
-  padding: .75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
-}
-
-.form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, .1);
-  border-color: rgba(255, 255, 255, .1);
-}
-
-.form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
+ }
 
 </style>
+
