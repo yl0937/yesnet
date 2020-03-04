@@ -1,7 +1,7 @@
 <template>
   <div>
 <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #2e2e2e">
+<ol class="breadcrumb" style="background-color: #f9bd5b">
 	<li class="breadcrumb-item"><a href="#">Watchers</a></li>
 	<li class="breadcrumb-item active" aria-current="page">Watch Block</li>
 </ol>
@@ -42,8 +42,40 @@ import JsonViewer from 'vue-json-viewer'
       }
 },
     components: {
+    JsonViewer
+    },
+  methods:{
+  getJSONResponse () {
+        const token = sessionStorage.getItem("access_token")
+        //const path = '/api/watchblock'
 
-    }
+      this.blockNum = parseInt(this.blockNum)
+
+    axios
+    .post('/api/watchblock',
+        {'blockNum':this.blockNum},
+        {
+        headers: {
+            "Authorization": token
+        }
+    },
+)
+    .then(response => {
+        let code=response.data.result.code
+        let err_name=response.data.result.err_name
+        let reason=response.data.result.reason
+
+       this.axiosjsonData = response.data.result.blockInfo
+        if(code != 200){
+            alert(err_name+reason)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+  }
+
+}
   }
 </script>
 <style>
@@ -56,4 +88,12 @@ import JsonViewer from 'vue-json-viewer'
                 .jbGrad02 {background: linear-gradient( to top, white, #e5ffac );}
                 .jbGrad03 {background: linear-gradient( to top, white, #d7d7d7 );}
                 .jbGrad04 {background: linear-gradient( to top, white, #ade9f7 );}
+
+.h5 {
+  margin: 15;
+  font-size: 1.5em;
+  text-align: left;
+  weight:100px;
+
+}
 </style>

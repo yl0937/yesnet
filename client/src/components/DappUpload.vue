@@ -26,7 +26,7 @@
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Description</button>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon1">Description</button>
       </div>
       <input type="text" class="form-control" v-model="desc" aria-label="Example text with button addon" aria-describedby="button-addon1">
     </div>
@@ -120,14 +120,25 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .h3 {
-  margin: 40px 500px;
+  margin: 40px 50 0;
 }
 .h5 {
-  margin: 15px;
+  margin: 15;
   font-size: 1.5em;
   text-align: left;
   weight:100px;
 
+}
+.ul {
+  list-style-type: none;
+  padding: 0;
+}
+.li {
+  margin: 0 10px;
+  padding-left:
+}
+.a {
+  color: black;
 }
 
 </style>
