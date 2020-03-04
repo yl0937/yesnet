@@ -16,7 +16,6 @@
 
     <!-- DApps Name/ Description -->
     <div class="input-group mb-3">
-
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <button class="btn btn-outline-secondary" type="button" id="button-addon1">DApps Name</button>
@@ -28,7 +27,7 @@
       <div class="input-group-prepend">
         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Description</button>
       </div>
-      <input type="text" class="form-control" v-model="desc" aria-label="Example text with button addon" aria-describedby="button-addon1">
+      <input type="text" class="form-control" v-model="desc" aria-label="Example text with button addon" aria-describedby="button-addon2">
     </div>
 
         <text-reader @load="text = $event"></text-reader>
@@ -63,6 +62,7 @@
 <script>
 import axios from 'axios'
 import JsonViewer from 'vue-json-viewer'
+
 export default {
  data() {
       return {
@@ -94,7 +94,8 @@ export default {
        addDApp(){
           const token = sessionStorage.getItem("access_token")
           this.text2=this.text2.replace(/(\n)/gm,"")
-          axios.post('/api/add_dapp',
+
+          axios.post('http://localhost:5000/api/add_dapp',
             {name:this.name, desc:this.desc, abi:this.text, bin:this.text2},
                 {
                 headers: {
@@ -111,25 +112,32 @@ export default {
         })
       }
     }
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.h3 {
-  margin: 40px 500px;
+h3 {
+  margin: 40px 0 0;
 }
-.h5 {
+h5{
   margin: 15px;
   font-size: 1.5em;
   text-align: left;
   weight:100px;
+
 }
-.ul {
+ul{
   list-style-type: none;
   padding: 0;
 }
-.a {
+li{
+  margin: 0 10px;
+
+}
+a{
   color: black;
 }
+
 </style>

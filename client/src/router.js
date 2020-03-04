@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Ping from './components/Ping.vue';
 import Login from './components/Login.vue';
 import DappUpload from './components/DappUpload.vue';
 import DAppsUpList from './components/DAppsList';
@@ -17,11 +16,6 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/ping',
-      name: 'Ping',
-      component: Ping,
-    },
-    {
       path: '/',
       name: 'Home',
       component: Home,
@@ -32,32 +26,32 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/dappupload',
-      name: 'Dapp',
+      path: '/DAppsUpload',
+      name: 'DAppsUpload',
       component: DappUpload,
     },
     {
-      path: '/dapplist',
-      name: 'DappList',
+      path: '/DAppsList',
+      name: 'DAppsList',
       component: DAppsUpList,
     },
     {
-      path: '/dashboard',
+      path: '/Dashboard',
       name: 'DashBoard',
       component: Dashboard,
     },
     {
-      path: '/deployeddapps',
+      path: '/DeployedDApps',
       name: 'DeployedDApps',
       component: DeployedDApps,
     },
     {
-      path: '/watchblock',
+      path: '/WatchBlock',
       name: 'WatchBlock',
       component: WatchBlock,
     },
     {
-      path: '/watchtx',
+      path: '/WatchTX',
       name: 'WatchTx',
       component: WatchTX,
     },

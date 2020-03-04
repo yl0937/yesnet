@@ -33,14 +33,6 @@ export default new Vuex.Store({
         }
     },
     actions:{
-        ping(){
-          axios
-            .post("http://localhost:5000/api/ping")
-            .then(res => {
-              let response = res.data
-              console.log(response)
-            })
-             },
         //try login
         login({ commit}, loginObj) {
             // Login => token return

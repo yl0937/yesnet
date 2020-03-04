@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapState, mapActions} from "vuex"
 import Header from './uxcomponents/Header.vue'
 import sidebar from './uxcomponents/sidebar.vue'
 import Home from './components/Home.vue'
@@ -44,11 +43,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 .content {
     float: left;
-    padding: 1.875em;
+    padding: 5em 2em 0em 24em;
     width: 100%;
 }
 </style>
