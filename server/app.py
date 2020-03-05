@@ -1,15 +1,16 @@
 import uuid
 
 from flask import Flask, jsonify, request
-from yesnet.server.controller.views import view
-from yesnet.server.controller.api import api_page
+from server.controller.views import view
+from server.controller.api import api_page
 from flask_cors import CORS, cross_origin
-from yesnet.server.models.database import ZenMongo
+from server.models.database import ZenMongo
+import os
 # instantiate the app
 
 
 app = Flask(__name__)
-CORS(app, resources={r'*':{'origins':'*'}})
+CORS(app, resources={r'*': {'origins': '*'}})
 app.config.from_object(__name__)
 
 
@@ -32,4 +33,4 @@ DEBUG = True
 # sanity check route
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port='9999')

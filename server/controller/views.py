@@ -8,16 +8,21 @@ from flask import current_app as app
 # import bcrypt
 from pymongo import MongoClient, collection
 
-from yesnet.server.controller import redisfunction
-from yesnet.server.models.database import ZenMongo
-from yesnet.server.models.dom import DApp
+from server.controller import redisfunction
+from server.models.database import ZenMongo
+from server.models.dom import DApp
 
-from yesnet.server.utils import zen_util
+from server.utils import zen_util
 from functools import wraps
 from datetime import timedelta, datetime
 import jwt
 from flask import Response
-from yesnet.server.models.dom import User
+from server.models.dom import User
 
 
-view = Blueprint('view', __name__)
+view = Blueprint('view', __name__, template_folder='template')
+
+
+@view.route('/', methods=['GET'])
+def get_main():
+    return render_template('index.html')
