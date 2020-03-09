@@ -47,7 +47,7 @@ import JsonViewer from 'vue-json-viewer'
   methods:{
   getJSONResponse () {
       const token = sessionStorage.getItem("access_token")
-      const path = '/api/watchtx'
+      const path = 'http://localhost:5000/api//watchtx'
 
       axios
         .post(path,

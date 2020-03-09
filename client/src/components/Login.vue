@@ -21,7 +21,7 @@
     <div class="high" >
 
         <div class="test12">
-            <form @keydown.enter="login({email, password})">
+            <form>
                 <div class="form-group">
                     <label>User E-mail</label>
                     <input type="text" class="form-control" v-model="email" name="email" placeholder="Email">

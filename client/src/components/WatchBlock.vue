@@ -52,7 +52,7 @@ import JsonViewer from 'vue-json-viewer'
       this.blockNum = parseInt(this.blockNum)
 
     axios
-    .post('/api/watchblock',
+    .post('http://localhost:5000/api//watchblock',
         {'blockNum':this.blockNum},
         {
         headers: {

@@ -6,21 +6,21 @@ from flask import current_app as app
 # import bcrypt
 from pymongo import MongoClient, collection
 
-from server.controller import redisfunction
-from server.models.database import ZenMongo
-from server.models.dom import DApp
+from yesnet.server.controller import redisfunction
+from yesnet.server.models.database import ZenMongo
+from yesnet.server.models.dom import DApp
 
-from server.utils import zen_util
+from yesnet.server.utils import zen_util
 from functools import wraps
 from datetime import timedelta, datetime
 import jwt
 from flask import Response
-from server.models.dom import User
+from yesnet.server.models.dom import User
 
-from server.controller.redisfunction import MsgHandler
+from yesnet.server.controller.redisfunction import MsgHandler
 # from app.models.database import LoginAPI
 
-api_page = Blueprint('api_page', 'api_page', template_folder='template')
+api_page = Blueprint('api_page', 'api_page', template_folder='templates')
 api_page.resource = {'JWT_SECRET_KEY': '8akdjfl*#Q@OS)_Dkljdlkdja'}
 
 

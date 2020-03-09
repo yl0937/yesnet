@@ -6,17 +6,17 @@ from flask import current_app as app
 # import bcrypt
 from pymongo import MongoClient, collection
 
-from server.controller import redisfunction
-from server.models.database import ZenMongo
-from server.models.dom import DApp
+from yesnet.server.controller import redisfunction
+from yesnet.server.models.database import ZenMongo
+from yesnet.server.models.dom import DApp
 
 
 import datetime
 
-from server.controller.redisfunction import MsgHandler
+from yesnet.server.controller.redisfunction import MsgHandler
 # from server.models.database import LoginAPI
 
-api_page = Blueprint('api_page', 'api_page')
+api_page = Blueprint('api_page', 'api_page', template_folder='templates')
 api_page.resource = {}
 
 

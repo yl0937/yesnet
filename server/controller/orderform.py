@@ -1,4 +1,4 @@
-from server.controller.redisfunction import MsgHandler
+from yesnet.server.controller.redisfunction import MsgHandler
 
 ORDERPING = {
   "ticket": "20190814065206123456",

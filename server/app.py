@@ -1,10 +1,10 @@
 import uuid
 
 from flask import Flask, jsonify, request
-from server.controller.views import view
-from server.controller.api import api_page
+from yesnet.server.controller.views import view_page
+from yesnet.server.controller.api import api_page
 from flask_cors import CORS, cross_origin
-from server.models.database import ZenMongo
+from yesnet.server.models.database import ZenMongo
 import os
 # instantiate the app
 
@@ -14,14 +14,13 @@ CORS(app, resources={r'*': {'origins': '*'}})
 app.config.from_object(__name__)
 
 
-def add_blueprint(app):
-    app.register_blueprint(view, url_prefix='/')
-    app.register_blueprint(api_page, url_prefix='/api')
+app.register_blueprint(view_page, url_prefix='/')
+app.register_blueprint(api_page, url_prefix='/api')
 
-    # DB connect
-    zen_mongo = ZenMongo()
-    api_page.resource['mongo'] = zen_mongo
-    view.resource['mongo'] = zen_mongo
+# DB connect
+zen_mongo = ZenMongo()
+api_page.resource['mongo'] = zen_mongo
+view_page.resource['mongo'] = zen_mongo
 
 
 # cors = CORS(app)
