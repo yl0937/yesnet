@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>YESNET</title>
+    <style type="text/css">
+
+        body{
+            background-size: cover;
+        }
+
+
+        .nav-item {
+          position: relative;
+          text-align:right;
+          display:inline-block;
+          text-align: center;
+          font-size:180%;
+          font-weight:normal;
+          color:black;
+          margin-left:3%;
+          margin-top:3%;
+        }
+
+
+        .accent {
+          color:#f7b642;
+        }
+       .subtitle1 {
+          position:  relative;
+          width: 50%;
+          margin: 0 auto;
+          margin-top: -5%;
+          text-align: center;
+          font-size: 180%;
+          color:#322f2a;
+          line-height: 100%;
+          padding: 7% 2% 0 3%
+        }
+      .title {
+          position:  relative;
+          width: 100%;
+          margin-top: 0%;
+          text-align: center;
+          font-size: 290%;
+          font-weight: bold;
+          color:#322f2a;
+          line-height: 200%;
+        }
+
+      .btn1 {
+          position:  relative;
+          width:16%;
+          background-color: #f7b642;
+          border: none;
+          color:#fff;
+          padding: 0.8% 0%;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          font-size: 100%;
+          margin: 5%;
+          cursor: pointer;
+          border-radius: 10px;
+          left: 37.5%;
+          margin-top: 10%;
+        }
+      .btn2 {
+          position: relative;
+          width:16%;
+          background-color: #f7b642;
+          border: none;
+          color:#fff;
+          padding: 0.8% 0;
+          text-align: center;
+          text-decoration: none;
+          display: block;
+          font-size: 100%;
+          margin: 5%;
+          cursor: pointer;
+          border-radius:10px;
+          left:37.5%;
+          margin-top: -3%;
+        }
+
+
+  </style>
+  </head>
+
+  <body>
+
+
+    <form method="GET" action="/login">
+    <button class="btn1" type="submit" onfocus="this.blur()">L O G I N</button>
+    </form>
+
+    <form method="GET" action="/register">
+    <button class="btn2" onfocus="this.blur()">S I G N U P</button>
+    </form>
+
+    <div class="main">
+        <div class="subtitle1">
+          <span class="accent">YesNet</span> ,The proto Galaxy!
+        </div>
+    </div>
+    <div class="title">
+        Convenient Blockchain Technology!
+        </div>
+
+  </body>
+</html>
+<script type="text/javascript">
+    window.onload = function () {
+        let token3 = sessionStorage.getItem("access_token")
+        if (token3 != null)
+            {
+                window.location.href = '/login';
+            }
+        else
+        {
+
+        }
+    }
+
+
+</script>
