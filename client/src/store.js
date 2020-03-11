@@ -37,7 +37,7 @@ export default new Vuex.Store({
         login({ commit}, loginObj) {
             // Login => token return
             axios
-                .post("http://localhost:5000/api/login", loginObj)
+                .post("http://localhost:9999/api/login", loginObj)
                 .then(res => {
                   console.log("test")
                     let response = res.data
@@ -52,21 +52,21 @@ export default new Vuex.Store({
                                 }
                             }
                             commit('loginSuccess')
-                            router.push("/watchblock")
+                            router.push("/")
                         }
                     else {
                         alert(' Check your Id&PW 1');
                         }
                 })
                 .catch(() => {
-                           alert(' Check your Id&PW 2');
+                           alert(' Check your Id&PW 23');
                        })
             },
         register({ commit }, registerObj) {
             if (registerObj['password'] == registerObj['passwordConfirm'])
             {
             axios
-                .post("http://localhost:5000/api/register", registerObj)
+                .post("http://localhost:9999/api/register", registerObj)
                 .then(res => {
                     let response = res.data
                     {
@@ -83,6 +83,16 @@ export default new Vuex.Store({
             else {
                 alert('password is not same')
             }
+        },
+        loginRefresh( {commit} ) {
+            let token = sessionStorage.getItem("access_token");
+            if (token != null) {
+                commit("loginSuccess")
+                router.push("/dashboard")
+            }
+            else
+                commit('loginError')
+
         },
         logout({commit}) {
                 commit("logout")

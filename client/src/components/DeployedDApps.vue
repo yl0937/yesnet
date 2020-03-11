@@ -130,6 +130,297 @@
 </template>
 
 <script>
+import axios from 'axios'
+import moment from 'moment'
+
+export default {
+    name: 'first',
+    data() {
+        return {
+            fields: ['timestamp', 'blockNumber', 'gasUsed', 'contractAddress', 'blockHash', 'function'],
+            items1: [],
+            functionList: [],
+            method: null,
+            name: [],
+            nameState: null,
+            submittedNames: [],
+            param: null,
+            functionNames: [],
+            modalState: null,
+            isShowing: false,
+            calltxcheck: [],
+            paramArr: [],
+            functionNames2: [],
+            name2: [],
+            submittedParam: [],
+            paramState: [],
+            abi: null,
+            arraydata: {},
+            dictObject:[]
+        }
+    },
+    methods: {
+        functionEx(index) {
+            this.arraydata.functionName = this.functionList[index].name
+
+            this.functionNames.splice(0)
+            for(var input of this.functionList[index].inputs){
+                this.functionNames.push(input.name)
+            }
+        },
+        getJSONResponse() {
+            const token = sessionStorage.getItem("access_token")
+            //console.log(token)
+            const path = '/api/getDApp'
+            axios
+                .get(path, {
+                    params: {},
+                    headers: {
+                        "Authorization": token
+                    }
+                })
+                .then(response => {
+                    for (var arr of response.data.payload){
+                        //console.log(arr.timestamp)
+                        let time = arr.timestamp
+                        //console.log(time)
+                        let changetime = moment.unix(time).format('YYYY/MM/DD h:mm:ss a');
+                        //console.log(changetime)
+                        arr.timestamp = changetime
+
+                    let abi = arr.abi
+                    this.abi = abi
+
+                    this.calltxcheck.splice(0)
+                    for (var x of arr.funtions) {
+                        //console.log(x.name, typeof(x.constant), x.constant, x)
+                        this.dictObject = x.inputs
+                        var cons = Boolean(x.constant)
+
+                        if (cons) {
+                            //console.log(x.name, x.constant)
+                            if (this.dictObject.length > 0) {
+                                this.calltxcheck.push('A')
+                            } else {
+                                this.calltxcheck.push('B')
+                            }
+
+                        }
+                        else {
+                            if (this.dictObject.length > 0) {
+                                this.calltxcheck.push('C')
+                            } else {
+                                this.calltxcheck.push('D')
+                            }
+                        }
+                        this.functionList = arr.funtions
+
+                    }
+                    }
+                    this.items1 = response.data.payload
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+        },
+        checkFormValidity() {
+            const valid = this.$refs.form.checkValidity()
+            this.nameState = valid ? 'valid' : 'invalid'
+            return valid
+        },
+        resetModal() {
+            this.name = []
+            this.nameState = null
+            this.paramArr = []
+            this.modalState = null
+        },
+        handleOk(bvModalEvt) {
+            // Prevent modal from closing
+            bvModalEvt.preventDefault()
+            // Trigger submit handler
+            this.handleSubmit()
+            this.argsPost()
+        },
+        handleSubmit() {
+            // Exit when the form isn't valid
+            if (!this.checkFormValidity()) {
+                return
+            }
+            // Push the name to submitted names
+            this.submittedNames.push(this.name)
+            // Hide the modal manually
+            this.$nextTick(() => {
+                this.$refs.modal.hide()
+            })
+        },
+        argsPost() {
+            let args = {}
+
+            //let args_name
+            let args_names = []
+            let args_vals = []
+
+            args_names = this.functionNames
+
+            let paramintArr = []
+            for (var inte of this.paramArr){
+                inte = parseInt(inte)
+                paramintArr.push(inte)
+            }
+            args_vals = paramintArr
+            for (var a in args_names) {
+                args[args_names[a]] = args_vals[a]
+            }
+            //args[args_name] = args_val
+            for (var i of this.items1) {
+                this.arraydata.contractAddress = i.contractAddress
+            }
+            this.arraydata.abi = this.abi
+            this.arraydata.args = args
+            // eslint-disable-next-line no-console
+            console.log('arraydata :', this.arraydata)
+            axios.post('/api/callFunction',
+                this.arraydata
+            )
+            // eslint-disable-next-line no-unused-vars
+                .then(response => {
+                    let str = JSON.stringify(response.data.result.return)
+                    alert(str)
+                    console.log(response)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+        },
+        txhandleOk(bvModalEvt) {
+            // Prevent modal from closing
+            bvModalEvt.preventDefault()
+            // Trigger submit handler
+            this.txhandleSubmit()
+            this.txargsPost()
+        },
+        txhandleSubmit() {
+            // Exit when the form isn't valid
+            if (!this.checkFormValidity()) {
+                return
+            }
+            // Push the name to submitted names
+            this.submittedNames.push(this.name)
+            // Hide the modal manually
+            this.$nextTick(() => {
+                this.$refs.modal.hide()
+            })
+        },
+        txargsPost() {
+            let args = {}
+
+            //let args_name
+            //let args_val
+            let args_names = []
+            let args_vals = []
+
+            args_names = this.functionNames
+            args_vals = this.name
+            for (var a in args_names) {
+                args[args_names[a]] = args_vals[a]
+            }
+            //args[args_name] = args_val
+            for (var i of this.items1) {
+                this.arraydata.contractAddress = i.contractAddress
+            }
+            this.arraydata.abi = this.abi
+            this.arraydata.args = args
+            // eslint-disable-next-line no-console
+            console.log('arraydata :', this.arraydata)
+            axios.post('/api/callTx',
+                this.arraydata
+            )
+            // eslint-disable-next-line no-unused-vars
+                .then(response => {
+                    let str = JSON.stringify(response.data.result.return)
+                    alert(str)
+                    console.log(response)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+        },
+        noargsPost() {
+            for (var i of this.items1) {
+                this.arraydata.contractAddress = i.contractAddress
+            }
+            this.arraydata.abi = this.abi
+            this.$delete(this.arraydata, 'args')
+            // eslint-disable-next-line no-console
+            console.log('arraydata :', this.arraydata)
+            axios.post('/api/callFunction',
+                this.arraydata
+            )
+                .then(response => {
+                    let str = JSON.stringify(response.data.result.return)
+                    alert(str)
+                    console.log(response)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+
+        },
+        notxargsPost() {
+            for (var i of this.items1) {
+                this.arraydata.contractAddress = i.contractAddress
+            }
+            this.arraydata.abi = this.abi
+            this.$delete(this.arraydata, 'args')
+            // eslint-disable-next-line no-console
+            console.log('arraydata :', this.arraydata)
+            axios.post('/api/callTx',
+                this.arraydata
+            )
+                .then(response => {
+                    let str = JSON.stringify(response.data.result.return)
+                    alert(str)
+                    console.log(response)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+
+        },
+        alerthandleok() {
+            this.noargsPost()
+                .then(response => {
+                    // eslint-disable-next-line no-console
+                    console.log(response.result)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+        },
+        txalerthandleok() {
+            this.notxargsPost()
+                .then(response => {
+                    // eslint-disable-next-line no-console
+                    console.log(response.result)
+                })
+                .catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
+        }
+    },
+        created() {
+            this.getJSONResponse()
+        }
+    }
+
+
 </script>
 
 <style scoped>

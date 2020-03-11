@@ -40,6 +40,78 @@
 </template>
 
 <script>
+import axios from 'axios'
+import moment from 'moment'
+
+export default {
+  name: 'first',
+  data() {
+    isShowing:false
+    return {
+        fields: [
+          'name',
+          'public',
+          'upload_time',
+          'deployment'
+        ],
+        items: []
+    }
+  },
+  methods:{
+  getJSONResponse () {
+    const token = sessionStorage.getItem("access_token")
+        //console.log(token)
+    const path = 'http://localhost:9999/api/show_dapp'
+    axios
+    .get(path, { params: {},
+        headers: {
+            "Authorization": token
+        }
+    })
+    .then(response => {
+       this.items = response.data.payload
+    })
+    .catch(error => {
+        // eslint-disable-next-line no-console
+        console.log(error)
+    })
+  },
+    DeploymentDApps(app_id){
+    const token = sessionStorage.getItem("access_token")
+    axios.post('http://localhost:9999/api/deploymentPost',
+        {dapp_id:app_id},
+        {headers: {
+            "Authorization": token
+           }
+        })
+    .then(response => {
+        let code
+        let err_name
+        let reason
+        code = response.data.code
+        err_name = response.data.err_name
+        reason = response.data.reason
+
+       if(code == '200'){
+        alert('Success')
+       }
+       if(code != '200'){
+        alert('Fail'+err_name+reason)
+       }
+    })
+    .catch(error => {
+        console.log(error)
+    })
+    },
+    date: function (date) {
+      return moment(date).format('YYYY/MM/DD h:mm a');
+    }
+
+},
+    created () {
+        this.getJSONResponse()
+    }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

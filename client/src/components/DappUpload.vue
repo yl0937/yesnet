@@ -62,6 +62,8 @@
 <script>
 import axios from 'axios'
 import JsonViewer from 'vue-json-viewer'
+import TextReader from './src/TextReader'
+import BinReader from './src/BinReader'
 
 export default {
  data() {
@@ -75,6 +77,8 @@ export default {
       }
     },
     components: {
+     TextReader,
+     BinReader,
     JsonViewer
     },
       methods: {
@@ -95,7 +99,7 @@ export default {
           const token = sessionStorage.getItem("access_token")
           this.text2=this.text2.replace(/(\n)/gm,"")
 
-          axios.post('http://localhost:5000/api/add_dapp',
+          axios.post('http://localhost:9999/api/add_dapp',
             {name:this.name, desc:this.desc, abi:this.text, bin:this.text2},
                 {
                 headers: {
@@ -119,7 +123,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 40px 500px;
 }
 h5{
   margin: 15px;

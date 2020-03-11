@@ -16,5 +16,8 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  beforeCreate() {
+    this.$store.dispatch("loginRefresh")
+  },
   render: h => h(App),
 }).$mount('#app');

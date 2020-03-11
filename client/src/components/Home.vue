@@ -47,6 +47,55 @@
 </template>
 
 
+<script>
+import { mapState, mapActions } from "vuex"
+import ethmodal from './ethmodal'
+import axios from 'axios'
+import moment from 'moment'
+
+  export default {
+    data() {
+      return {
+        // Note `isActive` is left out and will not appear in the rendered table
+        fields: ['name', 'public', 'upload_time'],
+        items: [],
+        dappList: [],
+        times: [],
+        time: ''
+      }
+    },
+    components: {
+      ethmodal
+    },
+  methods:{
+  ...mapActions(["log"]),
+  addNewItem() {
+      const token = sessionStorage.getItem("access_token")
+    const path = '/api/show_dapp'
+    axios
+    .get(path, { params: {},
+        headers: {
+            "Authorization": token
+        }
+    })
+    .then(response => {
+       this.items = response.data.payload
+    })
+    .catch(error => {
+        console.log(error)
+    })
+  },
+    date: function (date) {
+      return moment(date).format('YYYY/MM/DD h:mm a');
+    }
+
+},
+    created () {
+        this.addNewItem()
+    }
+  }
+</script>
+
 <style scoped>
 .a{
 color: black;
