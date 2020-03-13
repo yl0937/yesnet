@@ -18,7 +18,7 @@ def get_main():
         abort(404)
 
 
-@view_page.route('/dashboard', methods=['GET'])
+@view_page.route('/Dashboard', methods=['GET'])
 def push_dashboard():
     try:
         return render_template('index.html')
@@ -50,15 +50,15 @@ def push_register():
         abort(404)
 
 
-@view_page.route('/dappslaunch', methods=['GET'])
-def push_dappslunch():
+@view_page.route('/DeployedDApps', methods=['GET'])
+def push_DeployedDApps():
     try:
         return render_template('index.html')
     except TemplateNotFound:
         abort(404)
 
 
-@view_page.route('/dappsupload', methods=['GET'])
+@view_page.route('/DAppsUpload', methods=['GET'])
 def push_dappsupload():
     try:
         return render_template('index.html')
@@ -66,7 +66,7 @@ def push_dappsupload():
         abort(404)
 
 
-@view_page.route('/dappslist', methods=['GET'])
+@view_page.route('/DAppsList', methods=['GET'])
 def push_dappslist():
     try:
         return render_template('index.html')
@@ -82,7 +82,7 @@ def push_users():
         abort(404)
 
 
-@view_page.route('/watchblock', methods=['GET'])
+@view_page.route('/WatchBlock', methods=['GET'])
 def push_watchblock():
     try:
         return render_template('index.html')
@@ -90,7 +90,7 @@ def push_watchblock():
         abort(404)
 
 
-@view_page.route('/watchtx', methods=['GET'])
+@view_page.route('/WatchTX', methods=['GET'])
 def push_watchtx():
     try:
         return render_template('index.html')
