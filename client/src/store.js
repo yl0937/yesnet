@@ -52,7 +52,7 @@ export default new Vuex.Store({
                                 }
                             }
                             commit('loginSuccess')
-                            router.push("/")
+                            router.push("/Dashboard")
                         }
                     else {
                         alert(' Check your Id&PW 1');

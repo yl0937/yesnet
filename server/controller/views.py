@@ -112,3 +112,11 @@ def push_node():
         return render_template('index.html')
     except TemplateNotFound:
         abort(404)
+
+
+@view_page.route('/Main', methods=['GET'])
+def push_main():
+    try:
+        return render_template('index.html')
+    except TemplateNotFound:
+        abort(404)

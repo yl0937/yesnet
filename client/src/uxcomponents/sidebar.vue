@@ -1,5 +1,5 @@
 <template>
- <div class="container-fluid">
+ <div class="container-fluid" v-show="isLogin">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
@@ -62,6 +62,16 @@
    </div>
    </div>
 </template>
+<script>
+  import {mapState, mapActions} from "vuex"
+
+  export default {
+      computed: {
+          ...mapState(["isLogin"])
+      }
+  }
+</script>
+
 <style scoped>
 .sidebar {
   position: fixed;

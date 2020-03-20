@@ -6,9 +6,9 @@ import DappUpload from './components/DappUpload.vue';
 import DAppsUpList from './components/DAppsList';
 import Dashboard from './components/Dashboard';
 import DeployedDApps from './components/DeployedDApps';
-import Home from "./components/Home";
 import WatchBlock from "./components/WatchBlock";
 import WatchTX from "./components/WatchTX";
+import Main from "./components/Main";
 
 Vue.use(Router);
 
@@ -35,8 +35,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home,
+      name: 'Main',
+      component: Main,
     },
     {
       path: '/login',
@@ -78,6 +78,6 @@ export default new Router({
       name: 'WatchTx',
       component: WatchTX,
       beforeEnter: onlyAuthUser,
-    },
+    }
   ],
 });

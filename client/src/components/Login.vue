@@ -1,47 +1,68 @@
 <style>
-
-
-
-    .test12 {
+ .login {
         position: absolute;
-        top: 20%;
-        left: 33%;
-
+        top: 33%;
+        left: 40.3%;
         padding-top: 5%;
         padding-bottom: 5%;
         padding-right: 10%;
         padding-left: 10%;
-        vertical-align: middle;
-        border: #f7b642 solid 5px;
-    }
+}
+ .box{
+          z-index:0;
+          height:400px;
+          width:700px;
+          color:#fff;
+          background:rgba(0,0,0,0.08);
+          padding:50px 0px;
+          transform: translate( 95%,20%);
+          border-radius: 15px;
+        }
+.title {
+          z-index:5;
+          position:relative;
+          width: 800px;
+          margin: 0 auto;
+          top:210px;
+          left: -10px;
+          text-align: center;
+          font-size: 4.0em;
+          color:white;
+          line-height: 2em;
+        }
+.question{
+top: 100%;
+left: 20%;
+}
+
 </style>
 
 <template>
-  <div class="container-fluid"  id="cm">
-    <div class="high" >
-
-        <div class="test12">
+  <div class="container-fluid" >
+  <div class="title">
+            <b><span class="accent">SIGN IN</span></b>
+  </div>
+          <div class="box"></div>
+          <div class="login">
             <form>
                 <div class="form-group">
-                    <label>User E-mail</label>
-                    <input type="text" class="form-control" v-model="email" name="email" placeholder="Email">
+                    <input type="text" style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="email" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" v-model="password" name="password" placeholder="Password">
+                    <input type="password"  style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="password" name="password" placeholder="Password">
                 </div>
             </form>
-
-            <button @click="login({ email, password})" class="btn btn-warning btn-block"
-
-            >Login</button>
             <br>
-            <div>
-                Don't have an account? <a href="/register">Sign up here</a>.
-            </div>`
-        </div>
+            <button @click="login({ email, password})" class="btn btn-warning btn-block" style="color:white; background-color: #f9bd5bm; width:400px; height:60px; font-weight:bold; font-size:31px;" >L O G   I N </button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class= "question">
+              <a href="/register" >Sign up here</a>
+            </div>
+         </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -61,5 +82,6 @@ export default {
         ...mapActions(["login"]),
 
             }
+
 }
 </script>
