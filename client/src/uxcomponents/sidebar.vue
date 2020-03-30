@@ -1,125 +1,95 @@
 <template>
- <div class="container-fluid" v-show="isLogin">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">
-              <span data-feather="home"></span>
-              DashBoard <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>DApps</span>
-          </h6>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DAppsUpload">
-              DApps Upload
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DAppsList">
-              DApps List
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/DeployedDApps">
-              Deployed DApps
-            </router-link>
-          </li>
-        </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>WATCHERS</span>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/WatchBlock">
-              Watch Block
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/WatchTX">
-              Watch TX
-            </router-link>
-          </li>
-        </ul>
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Login</span>
-        </h6>
-          <ul class="nav flex-column mb-2">
-            <li class="nav-item">
-          <router-link class="nav-link" to="/login">
-              Login
-            </router-link>
-          </li>
-            </ul>
-      </div>
-    </nav>
-   </div>
-   </div>
+    <aside id="left-panel" class="left-panel"  >
+               <nav class="navbar navbar-expand-sm navbar-default">
+
+            <SidebarHeader/>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <template v-for="(item, index) in navItems">
+                        <template v-if="item.title">
+                            <SidebarNavTitle :name="item.name" :classes="item.class" :wrapper="item.wrapper"/>
+                        </template>
+                        <template v-else-if="item.divider">
+                            <li class="divider"></li>
+                        </template>
+F
+                        <template v-else>
+                            <template v-if="item.children">
+                                <!-- First Level Dropdown -->
+                                <SidebarNavDropdown :name="item.name" :url="item.url" :icon="item.icon">
+                                    <template v-for="( childL1, index ) in item.children">
+                                        <template v-if="childL1.children">
+                                            <!-- Second Level Dropdown menu -->
+                                            <SidebarNavDropdown :name="childL1.name" :url="childL1.url" :icon="childL1.icon">
+                                                <li class="nav-item" v-for="(childL2, index) in childL1.children">
+                                                    <SidebarNavLink :name="childL2.name" :url="childL2.url" :icon="childL2.icon" :badge="childL2.badge" :variant="item.variant"/>
+                                                </li>
+                                            </SidebarNavDropdown>
+                                        </template>
+                                        <template v-else>
+                                            <SidebarNavItem :classes="item.class">
+                                                <SidebarNavLink :name="childL1.name" :url="childL1.url" :icon="childL1.icon" :badge="childL1.badge" :variant="item.variant"/>
+                                            </SidebarNavItem>
+                                        </template>
+                                    </template>
+                                </SidebarNavDropdown>
+                            </template>
+                            <template v-else>
+                                <SidebarNavItem :classes="item.class" >
+                                    <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" :badge="item.badge" :variant="item.variant"/>
+                                </SidebarNavItem>
+                            </template>
+                        </template>
+                    </template>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+
 </template>
+
+
+
 <script>
-  import {mapState, mapActions} from "vuex"
+import { mapState, mapActions } from "vuex"
+import SidebarHeader from './sidebar/SidebarHeader.vue';
+import SidebarNavDropdown from './sidebar/SidebarNavDropdown.vue';
+import SidebarNavTitle from './sidebar/SidebarNavTitle.vue';
+import SidebarNavLink from './sidebar/SidebarNavLink.vue';
+import SidebarNavItem from './sidebar/SidebarNavItem.vue';
+import SidebarFooter from './sidebar/SidebarFooter.vue';
 
-  export default {
-      computed: {
-          ...mapState(["isLogin"])
+
+export default{
+    name: 'sidebar',
+    props: {
+        navItems: {
+          type: Array,
+          required: true,
+          default: () => []
       }
-  }
+    },
+   computed: {
+        ...mapState(["isLogin"])
+    },
+    components: {
+        SidebarHeader,
+        SidebarNavDropdown,
+        SidebarNavLink,
+        SidebarNavTitle,
+        SidebarNavItem,
+        SidebarFooter
+    },
+    methods: {
+        handleClick (e) {
+          e.preventDefault()
+          e.target.parentElement.classList.toggle('show')
+      }
+    }
+}
 </script>
-
-<style scoped>
-.sidebar {
-  position: fixed;
-  top: 50px;
-  bottom: 0;
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
-
-.sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: .5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-  .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-  }
-}
-
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
-
-.sidebar .nav-link.active {
-  color: #007bff;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
-</style>

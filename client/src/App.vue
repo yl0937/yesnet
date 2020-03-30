@@ -1,53 +1,51 @@
 <template>
   <div id="app">
-    <div class="admin-container">
-      <div class="Header">
-         <Header/>
-      <div class="sidebar">
-          <sidebar/>
-      <div id="right-panel" class= "right-panel">
-        <div class="content pb-o">
-          <transition enter-active-class="animated fadeIn">
-            <router-view></router-view>
-          </transition>
-         </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <auth-layout ></auth-layout>
+      <div class="admin-container" >
+        <sidebar :navItems="nav"/>
+        <div id="right-panel"  class="right-panel">
+          <Header/>
+  <div class="content" height="100%">
+              <transition enter-active-class="animated fadeIn">
+                <router-view></router-view>
+              </transition>
+          </div>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex"
+import nav from './uxcomponents/nav.js'
 import Header from './uxcomponents/Header.vue'
 import sidebar from './uxcomponents/sidebar.vue'
 import Home from './components/Home.vue'
 
 
 export default {
-  data(){
-    return{
+    data () {
+        return {
+            nav: nav.items
+        }
+    },
+  computed: {
+        ...mapState(["isLoginError"])
+    },
+    components: {
+        Header,
+        sidebar
     }
-  },
-  components:{
-    Header,
-    sidebar
-  }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 30px;
-}
+@import url('./assets/style.scss');
+
 .content {
     float: left;
-    padding: 5em 2em 0em 24em;
     width: 100%;
+    height:100%;
 }
 </style>

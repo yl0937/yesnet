@@ -1,42 +1,3 @@
-<style>
- .login {
-        position: absolute;
-        top: 33%;
-        left: 40.3%;
-        padding-top: 5%;
-        padding-bottom: 5%;
-        padding-right: 10%;
-        padding-left: 10%;
-}
- .box{
-          z-index:0;
-          height:400px;
-          width:700px;
-          color:#fff;
-          background:rgba(0,0,0,0.08);
-          padding:50px 0px;
-          transform: translate( 95%,20%);
-          border-radius: 15px;
-        }
-.title {
-          z-index:5;
-          position:relative;
-          width: 800px;
-          margin: 0 auto;
-          top:210px;
-          left: -10px;
-          text-align: center;
-          font-size: 4.0em;
-          color:white;
-          line-height: 2em;
-        }
-.question{
-top: 100%;
-left: 20%;
-}
-
-</style>
-
 <template>
   <div class="container-fluid" >
   <div class="title">
@@ -44,7 +5,7 @@ left: 20%;
   </div>
           <div class="box"></div>
           <div class="login">
-            <form>
+            <form @keydown.enter="login({email, password})">
                 <div class="form-group">
                     <input type="text" style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="email" name="email" placeholder="Email">
                 </div>
@@ -53,7 +14,7 @@ left: 20%;
                 </div>
             </form>
             <br>
-            <button @click="login({ email, password})" class="btn btn-warning btn-block" style="color:white; background-color: #f9bd5bm; width:400px; height:60px; font-weight:bold; font-size:31px;" >L O G   I N </button>
+            <button @click="login({ email, password})" class="btn btn-warning btn-block" style="color:white; background-color: #f9bd5bm; width:400px; height:60px; font-weight:bold; font-size:31px;" >S I G N   I N </button>
             <br>
             <br>
             <br>
@@ -85,3 +46,44 @@ export default {
 
 }
 </script>
+
+<style>
+ .login {
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-right: 10%;
+        padding-left: 10%;
+}
+ .box{
+          z-index:0;
+          height:400px;
+          width:700px;
+          color:#fff;
+          background:rgba(0,0,0,0.08);
+          padding:50px 0px;
+          border-radius: 15px;
+          position: absolute;
+          top: 15%;
+          left: 18.7%;
+        }
+.title {
+          z-index:5;
+          position:relative;
+          width: 800px;
+          margin: 0 auto;
+          top:60px;
+          left: -320px;
+          text-align: center;
+          font-size: 4.0em;
+          color:white;
+          line-height: 2em;
+        }
+.question{
+top: 100%;
+left: 20%;
+}
+
+</style>

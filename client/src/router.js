@@ -9,6 +9,7 @@ import DeployedDApps from './components/DeployedDApps';
 import WatchBlock from "./components/WatchBlock";
 import WatchTX from "./components/WatchTX";
 import Main from "./components/Main";
+import register from "./components/register";
 
 Vue.use(Router);
 
@@ -37,6 +38,7 @@ export default new Router({
       path: '/',
       name: 'Main',
       component: Main,
+      beforeEnter: rejectAuthUser,
     },
     {
       path: '/login',
@@ -78,6 +80,12 @@ export default new Router({
       name: 'WatchTx',
       component: WatchTX,
       beforeEnter: onlyAuthUser,
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: register,
+      beforeEnter: rejectAuthUser
     }
   ],
 });
