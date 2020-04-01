@@ -1,6 +1,5 @@
 <template>
-  <div class="Back">
-  <div class="Main">
+  <div class="admin-container2">
     <div>
       <router-link to="/login">
       <button class="btn1"><b>SIGN  IN</b></button>
@@ -18,7 +17,6 @@
       <b>Convenient Blockchain Technology!</b>
     </div>
   </div>
-    </div>
 </template>
 
 <script>
@@ -28,10 +26,6 @@
 </script>
 
 <style scoped>
-  .Main {
-    background-image: url("../images/background.png");
-    background-size: cover;
-  }
   .btn1 {
           position:  relative;
           width:19%;
@@ -45,8 +39,8 @@
           cursor: pointer;
           border-radius: 10px;
           letter-spacing:20px;
-          left: 18%;
-          top:250px;
+          left: 40%;
+          top:370px;
           background-color:transparent;
           font-weight: bold;
         }
@@ -63,8 +57,8 @@
           cursor: pointer;
           border-radius: 10px;
           letter-spacing:20px;
-          left: 18%;
-          top:280px;
+          left: 40%;
+          top:395px;
           background-color:transparent;
           font-weight: bold;
         }
@@ -72,8 +66,8 @@
           position:relative;
           width: 800px;
           margin: 0 auto;
-          top:400px;
-          left: -300px;
+          top:500px;
+          left: -5px;
           text-align: center;
           font-size: 1.6em;
           color:white;
@@ -83,8 +77,8 @@
           position:relative;
           width: 800px;
           margin: 0 auto;
-          top:400px;
-          left: -300px;
+          top:510px;
+          left: -10px;
           text-align: center;
           font-size: 2.0em;
           color:white;

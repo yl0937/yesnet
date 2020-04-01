@@ -1,15 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <auth-layout ></auth-layout>
       <div class="admin-container" >
-        <sidebar :navItems="nav"/>
-        <div id="right-panel"  class="right-panel">
-          <Header/>
-  <div class="content" height="100%">
+          <sidebar :navItems="nav"/>
+            <div id="right-panel"  class="right-panel">
+            <Header/>
+            <div class="content pb-0" >
               <transition enter-active-class="animated fadeIn">
                 <router-view></router-view>
               </transition>
-          </div>
+            </div>
         </div>
       </div>
   </div>
@@ -46,6 +46,6 @@ export default {
 .content {
     float: left;
     width: 100%;
-    height:100%;
+    display: table;
 }
 </style>

@@ -67,7 +67,7 @@ def login():
         # Login Success
         payload = {
             'email': login_email,
-            'exp': datetime.utcnow() + timedelta(seconds=60 * 1)
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60)
         }
         token = jwt.encode(payload, api_page.resource['JWT_SECRET_KEY'], 'HS256')
         return jsonify({
@@ -240,7 +240,6 @@ def getTicketDeploy(*args, **kwargs):
 # Regiser
 @api_page.route('/register', methods=['POST'])
 def register():
-    ticket = request.json['ticket']
     username = request.json['username']
     email = request.json['Email']
     logpass = request.json['password']
@@ -248,7 +247,6 @@ def register():
 
     orderCreateAccount = {
         'cmd': 'createAccount',
-        'ticket': zen_util.generate_ticket(email),
         'timestamp': zen_util.get_timestamp(),
         'uid': email
     }
@@ -257,7 +255,7 @@ def register():
 
     msg = redisfunction.MsgHandler()
     msg.put_order(orderCreateAccount)
-    result = {'code': 200, 'payload': {'ticket': ticket}}
+    result = {'code': 200}
     response = json.dumps(result, default=json_util.default)
     return response
 

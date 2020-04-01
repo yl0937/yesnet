@@ -1,8 +1,9 @@
 <template>
-  <div class="container-fluid" >
-  <div class="title">
+  <div class="admin-container2">
+    <div class="container-fluid" >
+      <div class="title">
             <b><span class="accent">SIGN IN</span></b>
-  </div>
+      </div>
           <div class="box"></div>
           <div class="login">
             <form @keydown.enter="login({email, password})">
@@ -23,6 +24,7 @@
               <a href="/register" >Sign up here</a>
             </div>
          </div>
+      </div>
     </div>
 </template>
 
@@ -74,8 +76,8 @@ export default {
           position:relative;
           width: 800px;
           margin: 0 auto;
-          top:60px;
-          left: -320px;
+          top:220px;
+          left: 0px;
           text-align: center;
           font-size: 4.0em;
           color:white;
