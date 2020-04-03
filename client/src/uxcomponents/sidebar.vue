@@ -15,7 +15,6 @@
                         <template v-else-if="item.divider">
                             <li class="divider"></li>
                         </template>
-F
                         <template v-else>
                             <template v-if="item.children">
                                 <!-- First Level Dropdown -->
@@ -93,3 +92,4 @@ export default{
     }
 }
 </script>
+

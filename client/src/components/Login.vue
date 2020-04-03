@@ -11,7 +11,7 @@
                     <input type="text" style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="email" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <input type="password"  style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="password" name="password" placeholder="Password">
+                    <input type="password"  style="background-color:transparent; width:400px; height:50px; " class="form-control" v-model="password" name="password" placeholder="Password">
                 </div>
             </form>
             <br>
@@ -21,7 +21,7 @@
             <br>
             <br>
             <div class= "question">
-              <a href="/register" >Sign up here</a>
+              <a href="/register" style="color:white;">Sign up here</a>
             </div>
          </div>
       </div>

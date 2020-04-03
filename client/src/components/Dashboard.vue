@@ -134,4 +134,7 @@ color: black;
         left: 700px;
         top: 50px;
  }
+.breadcrumb-item{
+  color: white;
+}
 </style>
