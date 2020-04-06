@@ -199,7 +199,7 @@ aside.left-panel {
     }
     .main-menu {
         float: left;
-        padding: 0 1.25em;
+        padding: 0 2em;
     }
     .menu-title {
         color: #41434d;
@@ -213,122 +213,7 @@ aside.left-panel {
         text-transform: uppercase;
         width: 100%;
     }
-    .navbar-nav {
-        float: none;
-        position: relative;
-        li {
-            width: 100%;
-            &.active .menu-icon,
-            &:hover .toggle_nav_button:before,
-            .toggle_nav_button.nav-open:before {
-                color: #fff !important;
-            }
-            .dropdown-toggle:after {
-                display: none;
-            }
-            >a {
-                background: none !important;
-                color: #8b939b !important;
-                display: inline-block;
-                font-family: 'Open Sans';
-                font-size: 14px;
-                line-height: 30px;
-                padding: 10px 0;
-                position: relative;
-                width: 100%;
-                &:hover,
-                &:hover .menu-icon {
-                    color: #fff !important;
-                }
-                .menu-icon {
-                    color: #8b939b;
-                    float: left;
-                    margin-top: 8px;
-                    width: 55px;
-                    text-align: left;
-                    z-index: 9;
-                }
-                .menu-title-text {
-                    font-size: 20px;
-                }
-                .badge {
-                    border-radius: 0;
-                    font-family: 'Open Sans';
-                    font-weight: 600;
-                    float: right;
-                    margin: 6px 0 0 0;
-                    padding: 0.4em 0.5em;
-                }
-            }
-            &.menu-item-has-children {
-                position: relative;
-                a {
-                    line-height: 30px;
-                    &:before {
-                        content: "\f105";
-                        color: #8b939b;
-                        font-family: 'Fontawesome';
-                        font-size: 16px;
-                        position: absolute;
-                        top: 10px;
-                        right: 0;
-                        text-align: right;
 
-                        -webkit-transition: all .25s ease;
-                        -moz-transition: all .25s ease;
-                        -ms-transition: all .25s ease;
-                        -o-transition: all .25s ease;
-                        transition: all .25s ease;
-                    }
-                    &:hover:before {
-                        color: #fff;
-                    }
-                }
-                .sub-menu {
-                    background: $menu-bg;
-                    border: none;
-                    box-shadow: none;
-                    overflow-y: hidden;
-                    padding: 0 0 0 35px;
-                    li {
-                        position: relative;
-                    }
-                    i {
-                        color: #c8c9ce;
-                        float: left;
-                        padding: 0;
-                        position: absolute;
-                        left: 0;
-                        font-size: 14px;
-                        top: 9px;
-                    }
-                    a {
-                        padding: 2px 0 2px 30px;
-                        &:before {
-                            content: '';
-                            display: none;
-                        }
-                        .menu-icon {
-                            top: 3px;
-                            text-align: left;
-                            width: 25px;
-                        }
-                    }
-                }
-                &.show {
-                    a:before {
-                        content: "\f107";
-                    }
-                    .sub-menu {
-                        max-height: 1000px;
-                        opacity: 1;
-                        position: static !important;
-                    }
-                }
-            }
-        }
-    }
-}
 .navbar .navbar-nav>.active>a,
 .navbar .navbar-nav>.active>a:focus,
 .navbar .navbar-nav>.active>a:hover {
@@ -2131,7 +2016,7 @@ footer.site-footer {
                             li {
                                 a {
                                     display: block;
-                                    font-size: 14px;
+                                    font-size: 10px;
                                     max-width: inherit;
                                     padding: 2px 15px 2px 35px;
                                     width: 100%;
@@ -2347,7 +2232,7 @@ footer.site-footer {
                     li {
                         position: relative;
                         a {
-                            font-size: 14px;
+                            font-size: 10px;
                             max-width: inherit;
                             position: relative;
                             width: 100%;

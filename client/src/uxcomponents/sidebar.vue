@@ -7,42 +7,43 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
+                  <li class="nav-item">
+                  <h6 class="header-item ">
+                  <span>DAPPS</span>
+                  </h6>
+                  </li>
+                  <li class="nav-item">
+                      <router-link class="nav-link" to="/DAppsUpload">
+                       <img src="../images/dappsupload.png" style="position:relative; top:-1px; left:-10px;">DApps Upload
+                  </router-link>
+                  </li>
+                  <li class="nav-item">
+                  <router-link class="nav-link" to="/DAppsList">
+                  <img src="../images/dappslist.png" style="position:relative; top:-1px; left:-10px;">DApps List
+                  </router-link>
+                  </li>
+                  <li class="nav-item">
+                  <router-link class="nav-link" to="/DeployedDApps">
+                  <img src="../images/deployeddapps.png" style="position:relative; top:-6px; left:-10px;">Deployed DApps
+                  </router-link>
+                  </li>
 
-                    <template v-for="(item, index) in navItems">
-                        <template v-if="item.title">
-                            <SidebarNavTitle :name="item.name" :classes="item.class" :wrapper="item.wrapper"/>
-                        </template>
-                        <template v-else-if="item.divider">
-                            <li class="divider"></li>
-                        </template>
-                        <template v-else>
-                            <template v-if="item.children">
-                                <!-- First Level Dropdown -->
-                                <SidebarNavDropdown :name="item.name" :url="item.url" :icon="item.icon">
-                                    <template v-for="( childL1, index ) in item.children">
-                                        <template v-if="childL1.children">
-                                            <!-- Second Level Dropdown menu -->
-                                            <SidebarNavDropdown :name="childL1.name" :url="childL1.url" :icon="childL1.icon">
-                                                <li class="nav-item" v-for="(childL2, index) in childL1.children">
-                                                    <SidebarNavLink :name="childL2.name" :url="childL2.url" :icon="childL2.icon" :badge="childL2.badge" :variant="item.variant"/>
-                                                </li>
-                                            </SidebarNavDropdown>
-                                        </template>
-                                        <template v-else>
-                                            <SidebarNavItem :classes="item.class">
-                                                <SidebarNavLink :name="childL1.name" :url="childL1.url" :icon="childL1.icon" :badge="childL1.badge" :variant="item.variant"/>
-                                            </SidebarNavItem>
-                                        </template>
-                                    </template>
-                                </SidebarNavDropdown>
-                            </template>
-                            <template v-else>
-                                <SidebarNavItem :classes="item.class" >
-                                    <SidebarNavLink :name="item.name" :url="item.url" :icon="item.icon" :badge="item.badge" :variant="item.variant"/>
-                                </SidebarNavItem>
-                            </template>
-                        </template>
-                    </template>
+
+                  <h6 class="header-item ">
+                  <span>WATCHERS</span>
+                  </h6>
+                  <ul class="nav ">
+                  <li class="nav-item">
+                  <router-link class="nav-link" to="/WatchBlock">
+                  <img src="../images/watchblock.png" style="position:relative; top:-3px; left:-10px;">Watch Block
+                  </router-link>
+                  </li>
+                  <li class="nav-item">
+                  <router-link class="nav-link" to="/WatchTX">
+                  <img src="../images/watchtx.png" style="position:relative; top:-6px; left:-10px;">Watch TX
+                  </router-link>
+                  </li>
+                  </ul>
 
 
                 </ul>
@@ -62,6 +63,10 @@ import SidebarNavTitle from './sidebar/SidebarNavTitle.vue';
 import SidebarNavLink from './sidebar/SidebarNavLink.vue';
 import SidebarNavItem from './sidebar/SidebarNavItem.vue';
 import SidebarFooter from './sidebar/SidebarFooter.vue';
+import Vue from 'vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 
 export default{
@@ -92,4 +97,66 @@ export default{
     }
 }
 </script>
+<style>
+.sidebar {
+position: fixed;
+top: 10%;
+bottom: 0;
+left: 0;
+z-index: 100; /* Behind the navbar */
+padding: 48px 0 0; /* Height of navbar */
+box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
 
+.sidebar-sticky {
+position: relative;
+top: 0;
+height: calc(100vh - 48px);
+padding-top: .5rem;
+overflow-x: hidden;
+overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+.sidebar-sticky {
+position: -webkit-sticky;
+position: sticky;
+}
+}
+
+.sidebar .nav-link {
+font-weight: 300;
+color: #333;
+}
+
+.sidebar .nav-link .feather {
+margin-right: 20px;
+color: #999;
+}
+
+.sidebar .nav-link.active {
+color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+color: inherit;
+}
+
+.sidebar-heading {
+font-size: .75rem;
+text-transform: uppercase;
+}
+.header-item{
+  font-size: 1.50rem;
+  font-weight: bold;
+  font-family:  'Avenir', Helvetica, Arial, sans-serif;
+  margin-top: 40px;
+  margin-left: 30px;
+}
+.icon1{
+   top:20%;
+  left:-30%;
+
+  }
+</style>

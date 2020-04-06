@@ -59,7 +59,7 @@ export default new Router({
       beforeEnter: onlyAuthUser,
     },
     {
-      path: '/Dashboard',
+      path: '/dashboard',
       name: 'DashBoard',
       component: Dashboard,
     },

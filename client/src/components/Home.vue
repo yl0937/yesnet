@@ -120,7 +120,7 @@ color: black;
   font-size: 1.1em;
 }
 .Public{
- width: 1000px;
+ width: 200px;
   float: left;
   font-size: 1.1em;
 }

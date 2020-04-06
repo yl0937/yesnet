@@ -18,7 +18,7 @@ def get_main():
         abort(404)
 
 
-@view_page.route('/Dashboard', methods=['GET'])
+@view_page.route('/dashboard', methods=['GET'])
 def push_dashboard():
     try:
         return render_template('index.html')

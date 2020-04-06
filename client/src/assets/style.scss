@@ -172,7 +172,7 @@ aside.left-panel {
     clear: both;
     display: block;
     font-family:  'Avenir', Helvetica, Arial, sans-serif;
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 800;
     line-height: 50px;
     padding: 30px 0 0 0;
@@ -193,12 +193,14 @@ aside.left-panel {
         color: black !important;
         display: inline-block;
         font-family:  'Avenir', Helvetica, Arial, sans-serif;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
         line-height: 30px;
-        padding: 10px 0;
+
+        margin-top:5px;
         position: relative;
-        left: 30px;
+        top: 10px;
+        left: 50px;
         width: 100%; }
         .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
           color: #fff !important; }
@@ -270,6 +272,7 @@ aside.left-panel {
           max-height: 1000px;
           opacity: 1;
           position: static !important; }
+
 
 .navbar .navbar-nav > .active > a,
 .navbar .navbar-nav > .active > a:focus,
@@ -577,7 +580,7 @@ header .form-inline {
     .user-area .user-menu .nav-link {
       color: #272c33;
       display: block;
-      font-size: 14px;
+      font-size: 20px;
       line-height: 22px;
       padding: 5px 0; }
   .user-area .user-avatar {

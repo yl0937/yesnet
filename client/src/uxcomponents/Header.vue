@@ -20,44 +20,7 @@
                                 </form>
                             </div>
 
-                            <div class="dropdown for-notification">
-                                <button
-                                    class="btn btn-secondary dropdown-toggle"
-                                    type="button"
-                                    id="notification" data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    :class="{'notification-show': isNotification, '': !isNotification }"
-                                    @click="handleNotification"
-                                    autoClose= true
 
-                                >
-                                    <i class="fa fa-bell"></i>
-                                    <!--
-                                    <span class="count bg-danger">5</span>
-                                    -->
-                                </button>
-                                <!--
-                                <div class="dropdown-menu" aria-labelledby="notification">
-                                    <a class="dropdown-item media bg-flat-color-2 text-white" href="#">
-                                        <i class="fa fa-pencil"></i>
-                                        <p class="text-white">You have 3 Notification</p>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-1 text-white" href="#">
-                                        <i class="fa fa-check"></i>
-                                        <p class="text-white">Server #1 overloaded.</p>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-4 text-white" href="#">
-                                        <i class="fa fa-info"></i>
-                                        <p class="text-white">Server #2 overloaded.</p>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-5 text-white" href="#">
-                                        <i class="fa fa-warning"></i>
-                                        <p class="text-white">Server #3 overloaded.</p>
-                                    </a>
-                                </div>
-                                -->
-                            </div>
 
                             <div class="dropdown for-message">
                                 <button
@@ -110,6 +73,17 @@
                                 </div> -->
                             </div>
                         </div>
+                    </div>
+                    <div class="col-sm-1">
+                      <img class="btn btn-default dropdown-toggle"
+                                     src="../images/logout.png"  alt="User Avatar"
+                                     data-toggle="dropdown"
+                                     class="img-thumbnail" width="55" height="45"
+                                     class="img-circle"
+                                    @click="logout"
+
+                                >
+
                     </div>
 
 

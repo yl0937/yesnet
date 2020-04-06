@@ -28,6 +28,7 @@
     <b-thead head-variant="secondary">
       <b-tr>
         <b-th class= "Name"><strong>Name</strong></b-th>
+        <span class="icon"></span>
         <b-th class= "Public"><strong>Public</strong></b-th>
         <b-th class="UploadTime"><strong>Upload Time</strong></b-th>
       </b-tr>

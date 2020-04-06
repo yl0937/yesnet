@@ -8,7 +8,7 @@ export default {
         {
             name: 'DApps Upload',
             url: '/DAppsUpload',
-            icon: 'dashboard.png'
+            icon: 'dashboard(1).png'
         },
         {
             name: 'DApps List',
