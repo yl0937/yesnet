@@ -1,39 +1,20 @@
 <template>
 <!-- 상단바 -->
-<div>
-      <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-	<li class="breadcrumb-item"><a href="#">Home</a></li>
-	<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-</ol>
-</nav>
-
-<!-- ETH content -->
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
-	<p class="ETH content" style="" size="sm">
+<div class="shadow-sm p-3 mb-4">
+	<p class="h5" style="" size="sm">
     <ethmodal />
 	</p>
-</div>
-
-<!-- View DApps content-->
-<div class="shadow-sm p-3 mb-4bg-white rounded">
-	<p class="h5" style="padding-bottom: 2px; padding-top: 0;">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
 		<ion-icon name="list-box" class="red"></ion-icon>&nbsp; View DApps
-	</p>
-   <hr color="grey" size="2px"  width="100%"/>
-
-<!-- Name, Public, Upload -->
-	<div>
-	<b-table-simple hover>
+	</p><div>
+  <b-table-simple hover>
     <b-thead head-variant="secondary">
       <b-tr>
-        <b-th class= "Name"><strong>Name</strong></b-th>
-        <span class="icon"></span>
-        <b-th class= "Public"><strong>Public</strong></b-th>
-        <b-th class="UploadTime"><strong>Upload Time</strong></b-th>
+        <b-th>Name</b-th>
+        <b-th>Public</b-th>
+        <b-th>Upload Time</b-th>
       </b-tr>
     </b-thead>
-<!-- 작동 안되는거같음 -->
     <b-tbody>
       <b-tr v-for="item in items">
         <b-td>{{item.name}}</b-td>
@@ -44,9 +25,7 @@
   </b-table-simple>
 </div>
 </div>
-</div>
 </template>
-
 
 <script>
 import { mapState, mapActions } from "vuex"
@@ -72,7 +51,7 @@ import moment from 'moment'
   ...mapActions(["log"]),
   addNewItem() {
       const token = sessionStorage.getItem("access_token")
-    const path = '/api/show_dapp'
+    const path = 'http://localhost:9999/api/show_dapp'
     axios
     .get(path, { params: {},
         headers: {

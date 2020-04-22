@@ -51,41 +51,43 @@ export default {
 
 <style>
  .login {
-        position: absolute;
+        position:absolute;
         top: 30%;
         left: 30%;
         padding-top: 5%;
         padding-bottom: 5%;
         padding-right: 10%;
         padding-left: 10%;
+
 }
  .box{
           z-index:0;
-          height:400px;
-          width:700px;
+          height:30%;
+          width:50%;
           color:#fff;
           background:rgba(0,0,0,0.08);
-          padding:50px 0px;
-          border-radius: 15px;
+          border-radius: 10%;
           position: absolute;
-          top: 15%;
-          left: 18.7%;
+          left: 18.6%;
+          top: 10%;
+          transform: translate(50%,50%);
         }
 .title {
           z-index:5;
-          position:relative;
-          width: 800px;
+          position:absolute;
+          width: 100%;
           margin: 0 auto;
           top:220px;
-          left: 0px;
+          left: -10px;
           text-align: center;
           font-size: 4.0em;
           color:white;
           line-height: 2em;
         }
 .question{
-top: 100%;
-left: 20%;
+
+  top:30px;
+  left:20px;
 }
 
 </style>

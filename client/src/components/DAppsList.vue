@@ -1,30 +1,19 @@
 <template>
 <!-- 상단바 -->
   <div class="first">
-          <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-	<li class="breadcrumb-item"><a href="#">DApps</a></li>
-	<li class="breadcrumb-item active" aria-current="page">DApp List</li>
-</ol>
-</nav>
-
-<!-- DApps / DApps List -->
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
-	<p class="h5" style="padding-bottom: 2px; padding-top: 0;">
+<div class="shadow-sm p-3 mb-4">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
 		<ion-icon name="list-box" class="red"></ion-icon>&nbsp; DApp List
 	</p>
-	 <hr color="grey" size="2px"  width="100%"/>
- 	<div>
- <!-- Name / Public / UploadTime -->
-	<b-table-simple hover>
+  <b-table-simple hover>
     <b-thead head-variant="secondary">
       <b-tr>
-        <b-th class= "Name"><strong>Name</strong></b-th>
-        <b-th class= "Public"><strong>Public</strong></b-th>
-        <b-th class="UploadTime"><strong>Upload Time</strong></b-th>
+        <b-th>Name</b-th>
+        <b-th>Public</b-th>
+        <b-th>Upload Time</b-th>
+        <b-th> </b-th>
       </b-tr>
     </b-thead>
-
     <b-tbody>
       <b-tr v-for="item in items">
         <b-td>{{item.name}}</b-td>
@@ -36,8 +25,8 @@
   </b-table-simple>
 </div>
 </div>
-</div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -138,18 +127,15 @@ export default {
   weight:100px;
 }
 .Name{
-  width: 70px;
   float: left;
   font-size: 1.1em;
 }
 .Public{
- width: 1000px;
-  float: left;
+  float: right;
   font-size: 1.1em;
 }
 .UploadTime{
- width:500px;
-  float: left;
+  float: right;
   font-size: 1.1em;
 }
 </style>

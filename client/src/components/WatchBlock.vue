@@ -1,25 +1,19 @@
 <template>
   <div>
-<nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-	<li class="breadcrumb-item"><a href="#">Watchers</a></li>
-	<li class="breadcrumb-item active" aria-current="page">Watch Block</li>
-</ol>
-</nav>
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
-	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+<div class="shadow-sm p-3 mb-4">
+	<p class="h5" style="padding-bottom: 8px; padding-top:0px;">
 		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch Block
 	</p>
-
+    <hr color="grey" size="2px"  width="100%"/>
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
+  <input type="text" class="form-control" placeholder="Write down the Block Number" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
   </div>
 </div>
 
 <json-viewer
-    :value="axiosjsonData"
+
     :expand-depth=5
     copyable
     boxed
@@ -37,7 +31,6 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Write down the Block Number',
           blockNum: ''
       }
 },
@@ -52,7 +45,7 @@ import JsonViewer from 'vue-json-viewer'
       this.blockNum = parseInt(this.blockNum)
 
     axios
-    .post('http://localhost:9999/api//watchblock',
+    .post('http://localhost:9999/api/watchblock',
         {'blockNum':this.blockNum},
         {
         headers: {

@@ -74,7 +74,7 @@ import { mapState, mapActions } from "vuex"
           color:#fff;
           background:rgba(0,0,0,0.08);
           padding:50px 0px;
-          transform: translate( 77%,7%);
+          transform: translate( 77%,15%);
           border-radius: 15px;
         }
     .email {

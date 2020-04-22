@@ -1,22 +1,15 @@
 <template>
 <!-- 상단바 -->
 <div>
-      <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-	<li class="breadcrumb-item"><a href="#">Home</a></li>
-	<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-</ol>
-</nav>
-
 <!-- ETH content -->
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
+<div class="shadow-sm p-3 mb-4">
 	<p class="ETH content" style="" size="sm">
     <ethmodal />
 	</p>
 </div>
 
 <!-- View DApps content-->
-<div class="shadow-sm p-3 mb-4bg-white rounded">
+<div class="shadow-sm p-3 mb-4">
 	<p class="h5" style="padding-bottom: 2px; padding-top: 0;">
 		<ion-icon name="list-box" class="red"></ion-icon>&nbsp; View DApps
 	</p>

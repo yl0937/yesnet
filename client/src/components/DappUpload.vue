@@ -1,18 +1,12 @@
 <template>
 
     <div>
-    <!-- 상단바 -->
-          <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="background-color: #f9bd5b">
-        <li class="breadcrumb-item"><a href="#">DApps</a></li>
-        <li class="breadcrumb-item active" aria-current="page">DApp Upload</li>
-    </ol>
-    </nav>
     <!-- DApp Deployment -->
-    <div class="shadow-sm p-3 mb-4 bg-white rounded">
-        <p class="h5" style="padding-bottom: 8px; padding-top:0px;">
+    <div class="shadow-sm p-3 mb-4">
+        <p class="h5" style="padding-bottom: 8px; padding-top:0px; ">
             DApp Deployment
         </p>
+      <hr color="grey" size="2px"  width="100%"/>
 
     <!-- DApps Name/ Description -->
     <div class="input-group mb-3">
@@ -46,13 +40,16 @@
         sort></json-viewer>
         <br/>
       </div>
-    </div>
+
 
     <!-- 버튼 -->
-    <p style= "text-align: left;">
+
+    <p style= "text-align:left;">
     <button type="button" class="btn btn-warning" @click="addDApp">Upload</button>
     <button type="button" class="btn btn-dark" @click="resetForm">Reset</button>
     </p>
+    </div>
+
 
 
 

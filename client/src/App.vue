@@ -1,11 +1,11 @@
 <template>
   <div id="app" >
     <auth-layout ></auth-layout>
-      <div class="admin-container" >
+      <div class="admin-container">
           <sidebar :navItems="nav"/>
             <div id="right-panel"  class="right-panel">
             <Header/>
-            <div class="content pb-0" >
+            <div class="content pb-0">
               <transition enter-active-class="animated fadeIn">
                 <router-view></router-view>
               </transition>
@@ -36,7 +36,6 @@ export default {
         Header,
         sidebar
     }
-
 }
 </script>
 
@@ -45,7 +44,13 @@ export default {
 
 .content {
     float: left;
-    width: 100%;
     display: table;
+    background-color: #fdfbfd;
+  position: absolute;
+  top:80px;
+  left: 280px;
+  width:100%;
+
+
 }
 </style>

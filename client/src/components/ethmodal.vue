@@ -50,12 +50,14 @@ import axios from 'axios'
       },
     getJSONResponse () {
         const token = sessionStorage.getItem("access_token")
+        const email = sessionStorage.getItem("email")
         const path = 'http://localhost:9999/api/balance'
 
         axios
         .get(path, { params: {},
             headers: {
-                "Authorization": token
+                "Authorization": token,
+                "email" : email
             },
         })
         .then(response => {
@@ -74,3 +76,5 @@ import axios from 'axios'
 
     }
 </script>
+<style scoped>
+  </style>

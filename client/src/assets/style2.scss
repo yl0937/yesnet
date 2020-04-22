@@ -416,6 +416,7 @@ body.open {
     display: inline-block;
     padding: 0 1.875em;
     width: 100%;
+    position: fixed;
 }
 .open .right-panel {
     margin-left: -210px;
@@ -425,7 +426,7 @@ header.fixed-top {
     padding: 20px;
 }
 .header-menu .col-sm-7 {
-    position: inherit;
+    position: fixed;
 }
 
 .menutoggle {
@@ -1946,6 +1947,7 @@ footer.site-footer {
     aside.left-panel {
         max-width: 60px;
         width: 60px;
+        position: fixed;
         .navbar {
             .navbar-header {
                 padding: 0;
@@ -2278,6 +2280,7 @@ footer.site-footer {
             padding: 5px 10px 1px 5px;
             div[class*="col"] {
                 width: initial;
+
             }
             .col-sm-7 {
                 float: left;

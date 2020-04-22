@@ -14,17 +14,17 @@
                   </li>
                   <li class="nav-item">
                       <router-link class="nav-link" to="/DAppsUpload">
-                       <img src="../images/dappsupload.png" style="position:relative; top:-1px; left:-10px;">DApps Upload
+                       <img src="../images/dappsupload.png" style="position:relative; top:-3px; left:-11px;">DApps Upload
                   </router-link>
                   </li>
                   <li class="nav-item">
                   <router-link class="nav-link" to="/DAppsList">
-                  <img src="../images/dappslist.png" style="position:relative; top:-1px; left:-10px;">DApps List
+                  <img src="../images/dapplist.png" style="position:relative; top:-2px; left:-11px;">DApps List
                   </router-link>
                   </li>
                   <li class="nav-item">
                   <router-link class="nav-link" to="/DeployedDApps">
-                  <img src="../images/deployeddapps.png" style="position:relative; top:-6px; left:-10px;">Deployed DApps
+                  <img src="../images/deployeddapps.png" style="position:relative; top:-3px; left:-11px;">Deployed DApps
                   </router-link>
                   </li>
 
@@ -35,12 +35,12 @@
                   <ul class="nav ">
                   <li class="nav-item">
                   <router-link class="nav-link" to="/WatchBlock">
-                  <img src="../images/watchblock.png" style="position:relative; top:-3px; left:-10px;">Watch Block
+                  <img src="../images/watchblock.png" style="position:relative; top:-3px; left:-11px;">Watch Block
                   </router-link>
                   </li>
                   <li class="nav-item">
                   <router-link class="nav-link" to="/WatchTX">
-                  <img src="../images/watchtx.png" style="position:relative; top:-6px; left:-10px;">Watch TX
+                  <img src="../images/watchtx.png" style="position:relative; top:-3px; left:-11px;">Watch TX
                   </router-link>
                   </li>
                   </ul>
@@ -69,6 +69,7 @@ Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
 
+
 export default{
     name: 'sidebar',
     props: {
@@ -93,9 +94,11 @@ export default{
         handleClick (e) {
           e.preventDefault()
           e.target.parentElement.classList.toggle('show')
-      }
+      },
+
     }
 }
+
 </script>
 <style>
 .sidebar {
@@ -108,8 +111,10 @@ padding: 48px 0 0; /* Height of navbar */
 box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
+nav-item.on{color:red}
+
 .sidebar-sticky {
-position: relative;
+position: fixed;
 top: 0;
 height: calc(100vh - 48px);
 padding-top: .5rem;

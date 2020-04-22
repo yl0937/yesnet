@@ -35,6 +35,7 @@ export default new Vuex.Store({
     actions:{
         //try login
         login({ commit}, loginObj) {
+          sessionStorage.setItem("email", loginObj["email"])
             // Login => token return
             axios
                 .post("http://localhost:9999/api/login", loginObj)
@@ -52,7 +53,7 @@ export default new Vuex.Store({
                                 }
                             }
                             commit('loginSuccess')
-                            router.push("/Dashboard")
+                            router.push("/dashboard")
                         }
                     else {
                         alert(' Check your Id&PW 1');

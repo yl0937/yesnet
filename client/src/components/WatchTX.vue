@@ -1,17 +1,12 @@
 <template>
   <div>
-<nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-	<li class="breadcrumb-item"><a href="#">Watchers</a></li>
-	<li class="breadcrumb-item active" aria-current="page">Watch TX</li>
-</ol>
-</nav>
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
-	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+<div class="shadow-sm p-3 mb-4">
+	<p class="h5" style="padding-bottom: 8px; padding-top:0px;">
 		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch TX
 	</p>
+      <hr color="grey" size="2px"  width="100%"/>
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
+  <input type="text" class="form-control" placeholder="Write down the TxHash" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
   </div>
@@ -19,7 +14,6 @@
 </div>
 
 <json-viewer
-    :value="axiosjsonData"
     :expand-depth=5
     copyable
     boxed
@@ -36,7 +30,6 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Write down the TxHash',
           txHash:''
       }
 
@@ -47,7 +40,7 @@ import JsonViewer from 'vue-json-viewer'
   methods:{
   getJSONResponse () {
       const token = sessionStorage.getItem("access_token")
-      const path = 'http://localhost:9999/api//watchtx'
+      const path = 'http://localhost:9999/api/watchtx'
 
       axios
         .post(path,

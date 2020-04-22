@@ -1,16 +1,11 @@
 <template>
 <!-- 내부 상단바 -->
   <div class="first">
-          <nav aria-label="breadcrumb">
-<ol class="breadcrumb" style="background-color: #f9bd5b">
-    <li class="breadcrumb-item"><a href="#">DApps</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Deployed DApp</li>
-</ol>
-</nav>
+
 
 <!-- DApps/Deployed DApp-->
-<div class="shadow-sm p-3 mb-4 bg-white rounded">
-    <p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+<div class="shadow-sm p-3 mb-4 ">
+    <p class="h5" style="padding-bottom: 8px; padding-top:0px;">
         <ion-icon name="list-box" class="red"></ion-icon>  Deployed DApp
     </p>
   <div>
@@ -280,7 +275,7 @@ export default {
             this.arraydata.args = args
             // eslint-disable-next-line no-console
             console.log('arraydata :', this.arraydata)
-            axios.post('/api/callFunction',
+            axios.post('http://localhost:9999/api/callFunction',
                 this.arraydata
             )
             // eslint-disable-next-line no-unused-vars

@@ -62,6 +62,7 @@ export default new Router({
       path: '/dashboard',
       name: 'DashBoard',
       component: Dashboard,
+      beforeEnter: onlyAuthUser,
     },
     {
       path: '/DeployedDApps',
