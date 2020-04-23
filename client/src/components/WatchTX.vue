@@ -1,12 +1,11 @@
 <template>
   <div>
-<div class="shadow-sm p-3 mb-4">
-	<p class="h5" style="padding-bottom: 8px; padding-top:0px;">
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
 		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch TX
 	</p>
-      <hr color="grey" size="2px"  width="100%"/>
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Write down the TxHash" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
+  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
   </div>
@@ -14,6 +13,7 @@
 </div>
 
 <json-viewer
+    :value="axiosjsonData"
     :expand-depth=5
     copyable
     boxed
@@ -30,6 +30,7 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
+          axiosjsonData: 'Write down the TxHash',
           txHash:''
       }
 
@@ -78,10 +79,4 @@ import JsonViewer from 'vue-json-viewer'
                 .jbGrad02 {background: linear-gradient( to top, white, #e5ffac );}
                 .jbGrad03 {background: linear-gradient( to top, white, #d7d7d7 );}
                 .jbGrad04 {background: linear-gradient( to top, white, #ade9f7 );}
-.h5 {
-  margin: 15px;
-  font-size: 1.5em;
-  text-align: left;
-  weight:100px;
-}
 </style>

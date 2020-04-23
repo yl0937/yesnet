@@ -2,7 +2,7 @@
 <!-- 상단바 -->
   <div class="first">
 <div class="shadow-sm p-3 mb-4">
-	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px; ">
 		<ion-icon name="list-box" class="red"></ion-icon>&nbsp; DApp List
 	</p>
   <b-table-simple hover>

@@ -17,9 +17,7 @@
             <img src="../../images/logo.png" >
         </router-link>
 
-        <router-link to="/dashboard" class="navbar-brand hidden">
-            <img src="../../images/logo2.png" alt="Logo">
-        </router-link>
+
 
         <sidebar-collapse></sidebar-collapse>
 

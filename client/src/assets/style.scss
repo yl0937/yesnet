@@ -47,7 +47,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  z-index:10001;
+  z-index:10011;
   position: relative;
     /* Set rules to fill background */
   min-height: 100%;
@@ -132,7 +132,9 @@ aside.left-panel {
   width: 280px;
   transition: width 0.3s ease;
   top:0px;
-position: fixed;}
+position: fixed;
+z-index:10010;
+}
 
 .navbar {
   background: #272c33;
@@ -141,12 +143,15 @@ position: fixed;}
   display: block;
   margin: 0;
   margin-bottom: 100px;
-  padding: 0; }
+  padding: 0;
+  top:5%;
+}
 
   .navbar .navbar-header {
     float: none;
     text-align: center;
-    width: 100%; }
+    width: 100%;
+    position: fixed; }
   .navbar .navbar-brand {
     border-bottom: 1px solid #4e4e52;
     color: #f1f2f7 !important;
@@ -186,7 +191,11 @@ position: fixed;}
     width: 100%; }
   .navbar .navbar-nav {
     float: none;
-    position: relative; }
+    position: fixed;
+    top: 8%;
+    z-index:10010;
+    width: 13%;
+   }
     .navbar .navbar-nav li {
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
@@ -666,7 +675,10 @@ header .form-inline {
 
 .navbar-header {
     background-color: #5B4470 !important;
-  padding :4px;
+  padding :7px;
+  position: fixed;
+  z-index: 10010;
+  width: 100%;
 }
 
 .main-menu {

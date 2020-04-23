@@ -1,19 +1,19 @@
 <template>
   <div>
-<div class="shadow-sm p-3 mb-4">
-	<p class="h5" style="padding-bottom: 8px; padding-top:0px;">
+<div class="shadow-sm p-3 mb-4 bg-white rounded">
+	<p class="h5" style="padding-bottom: 8px; padding-top:7px;">
 		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch Block
 	</p>
-    <hr color="grey" size="2px"  width="100%"/>
+
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Write down the Block Number" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
+  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
   <div class="input-group-append">
     <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
   </div>
 </div>
 
 <json-viewer
-
+    :value="axiosjsonData"
     :expand-depth=5
     copyable
     boxed
@@ -31,7 +31,10 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          blockNum: ''
+          axiosjsonData: 'Write down the Block Number',
+          blockNum: '',
+          ticketInterval:null,
+          ticketres:null
       }
 },
     components: {
@@ -45,7 +48,7 @@ import JsonViewer from 'vue-json-viewer'
       this.blockNum = parseInt(this.blockNum)
 
     axios
-    .post('http://localhost:9999/api/watchblock',
+    .post('http://localhost:9999//dummyCall',
         {'blockNum':this.blockNum},
         {
         headers: {
@@ -54,19 +57,55 @@ import JsonViewer from 'vue-json-viewer'
     },
 )
     .then(response => {
-        let code=response.data.result.code
+        /*let code=response.data.result.code
         let err_name=response.data.result.err_name
         let reason=response.data.result.reason
 
        this.axiosjsonData = response.data.result.blockInfo
         if(code != 200){
-            alert(err_name+reason)
-        }
+            alert(code+reason)
+        }*/
+        this.axiosjsonData=response
+
+        this.ticketres=response.data.payload.ticket
+        console.log(this.ticketres)
+
+        this.postTicket()
     })
     .catch(error => {
         console.log(error)
     })
-  }
+  },
+      postTicket(){
+        const token = sessionStorage.getItem("access_token")
+
+        this.ticketInterval = setInterval(()=>{
+            axios
+                .post('http://localhost:9999/api/getTicket',
+                    {'ticket':this.ticketres},
+                    {
+                    headers: {
+                        "Authorization": token
+                    }
+                },
+                )
+                .then(response => {
+                    let resOfTicket=response.data
+                    console.log(resOfTicket)
+
+                    if(response.data.code!==300){
+                        this.stopInterval()
+                    }
+                })
+                .catch((error=>{
+                    console.log(error)
+                }))
+        },1000)
+
+      },
+      stopInterval(){
+        clearInterval(this.ticketInterval)
+      }
 
 }
   }
@@ -81,10 +120,4 @@ import JsonViewer from 'vue-json-viewer'
                 .jbGrad02 {background: linear-gradient( to top, white, #e5ffac );}
                 .jbGrad03 {background: linear-gradient( to top, white, #d7d7d7 );}
                 .jbGrad04 {background: linear-gradient( to top, white, #ade9f7 );}
-.h5 {
-  margin: 15px;
-  font-size: 1.5em;
-  text-align: left;
-  weight:100px;
-}
 </style>

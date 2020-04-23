@@ -1,10 +1,8 @@
 <template>
 
     <aside id="left-panel" class="left-panel"   >
-               <nav class="navbar navbar-expand-sm navbar-default">
-
             <SidebarHeader/>
-
+ <nav class="navbar navbar-expand-sm navbar-default">
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                   <li class="nav-item">
@@ -27,12 +25,9 @@
                   <img src="../images/deployeddapps.png" style="position:relative; top:-3px; left:-11px;">Deployed DApps
                   </router-link>
                   </li>
-
-
                   <h6 class="header-item ">
                   <span>WATCHERS</span>
                   </h6>
-                  <ul class="nav ">
                   <li class="nav-item">
                   <router-link class="nav-link" to="/WatchBlock">
                   <img src="../images/watchblock.png" style="position:relative; top:-3px; left:-11px;">Watch Block
@@ -45,8 +40,6 @@
                   </li>
                   </ul>
 
-
-                </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->

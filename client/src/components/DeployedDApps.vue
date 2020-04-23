@@ -1,48 +1,53 @@
 <template>
-<!-- 내부 상단바 -->
   <div class="first">
 
-
-<!-- DApps/Deployed DApp-->
 <div class="shadow-sm p-3 mb-4 ">
-    <p class="h5" style="padding-bottom: 8px; padding-top:0px;">
+    <p class="h5" style="padding-bottom: 8px; padding-top:7px;">
         <ion-icon name="list-box" class="red"></ion-icon>  Deployed DApp
     </p>
   <div>
-  <b-table hover :items="items1" :fields="fields">
-      <template v-slot:function="row">
+    <b-table :items="items1" :fields="fields" striped responsive="sm">
+      <template v-slot:cell(function)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
         </b-button>
+
+        <!-- As `row.showDetails` is one-way, we call the toggleDetails function on @change -->
+
       </template>
 
       <template v-slot:row-details="row">
         <b-card>
-        <div>
-  <b-table-simple hover>
-    <b-thead>
-      <b-tr variant="secondary">
-        <b-td>Name</b-td>
-        <b-td>Inputs</b-td>
-        <b-td> </b-td>
-      </b-tr>
-    </b-thead>
-    <b-tbody>
-      <b-tr v-for="(item, index) in functionList">
-        <b-td>{{item.name}}</b-td>
-        <b-td>{{item.inputs}}</b-td>
-        <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">Launch</b-button></div>
+          <div>
+          <b-table-simple hover>
+          <b-thead>
+            <b-tr variant="secondary">
+              <b-td>Name</b-td>
+              <b-td>Inputs</b-td>
+              <b-td> </b-td>
+             </b-tr>
+          </b-thead>
+          <b-tbody>
+              <b-tr v-for="(item, index) in functionList">
+              <b-td>{{item.name}}</b-td>
+              <b-td>{{item.inputs}}</b-td>
+              <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">LaunchA</b-button></div>
+              <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">LaunchB</b-button></div>
+              <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">LaunchC</b-button></div>
+              <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">LaunchD</b-button></div>
+              <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">Launch</b-button></div>
               <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">Launch</b-button></div>
               <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">Launch</b-button></div>
               <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">Launch</b-button></div>
-          </b-td>
-      </b-tr>
-    </b-tbody>
-  </b-table-simple>
-        </div>
+              </b-td>
+              </b-td>
+              </b-tr>
+          </b-tbody>
+          </b-table-simple>
+            <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+              </div>
         </b-card>
       </template>
-
     </b-table>
   </div>
   <div>
@@ -125,6 +130,7 @@
 </template>
 
 <script>
+//import abi from './abi.vue';
 import axios from 'axios'
 import moment from 'moment'
 
@@ -132,7 +138,7 @@ export default {
     name: 'first',
     data() {
         return {
-            fields: ['timestamp', 'blockNumber', 'gasUsed', 'contractAddress', 'blockHash', 'function'],
+            fields: ['timestamp','gasUsed','contractAddress','function'],
             items1: [],
             functionList: [],
             method: null,
@@ -166,7 +172,7 @@ export default {
         getJSONResponse() {
             const token = sessionStorage.getItem("access_token")
             //console.log(token)
-            const path = '/api/getDApp'
+            const path = 'http://localhost:9999/api/getDApp'
             axios
                 .get(path, {
                     params: {},
@@ -329,7 +335,7 @@ export default {
             this.arraydata.args = args
             // eslint-disable-next-line no-console
             console.log('arraydata :', this.arraydata)
-            axios.post('/api/callTx',
+            axios.post('http://localhost:9999/api/callTx',
                 this.arraydata
             )
             // eslint-disable-next-line no-unused-vars
@@ -351,7 +357,7 @@ export default {
             this.$delete(this.arraydata, 'args')
             // eslint-disable-next-line no-console
             console.log('arraydata :', this.arraydata)
-            axios.post('/api/callFunction',
+            axios.post('http://localhost:9999/api/callFunction',
                 this.arraydata
             )
                 .then(response => {
@@ -373,7 +379,7 @@ export default {
             this.$delete(this.arraydata, 'args')
             // eslint-disable-next-line no-console
             console.log('arraydata :', this.arraydata)
-            axios.post('/api/callTx',
+            axios.post('http://localhost:9999/api/callTx',
                 this.arraydata
             )
                 .then(response => {
@@ -415,19 +421,4 @@ export default {
         }
     }
 
-
 </script>
-
-<style scoped>
-.a {
-  color:black;
-}
-
-.h5 {
-  margin: 15px;
-  font-size: 1.5em;
-  text-align: left;
-  weight:100px;
-
-}
-</style>

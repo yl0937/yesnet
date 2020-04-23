@@ -613,7 +613,8 @@ def dummycall(*args, **kwargs):
     blockNum = request.json['blockNum']
 
     #get params
-    payload = {"blockNum": blockNum}
+    params = {"blockNum": blockNum}
+    payload = { "code":200 , 'params': params}
 
     # call core
     result = core.getBlock(payload)
