@@ -1,11 +1,10 @@
 <template>
   <div class="admin-container2">
     <div class="container-fluid" >
-      <div class="title">
-            <b><span class="accent">SIGN IN</span></b>
-      </div>
-          <div class="box"></div>
+            <!--<b><span class="accent">SIGN IN</span>-->
+          <!--<div class="box"></div>-->
           <div class="login">
+            <b><span class="title">SIGN IN</span>
             <form @keydown.enter="login({email, password})">
                 <div class="form-group">
                     <input type="text" style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="email" name="email" placeholder="Email">
@@ -77,7 +76,7 @@ export default {
           position:absolute;
           width: 100%;
           margin: 0 auto;
-          top:220px;
+          top:-30px;
           left: -10px;
           text-align: center;
           font-size: 4.0em;

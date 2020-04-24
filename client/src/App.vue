@@ -48,8 +48,8 @@ export default {
     background-color: #fdfbfd;
   position: absolute;
   top:80px;
-  left: 280px;
-  width:100%;
+  left: 290px;
+  width:85%;
 
 
 }
