@@ -5,9 +5,9 @@
 		<ion-icon name="list-box" class="yellow"></ion-icon>&nbsp;Watch TX
 	</p>
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
+  <input type="text" class="form-control" placeholder="Write down the TxHash" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="txHash">
   <div class="input-group-append">
-    <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
+    <button class="btn btn-dark" type="button" @click="getJSONResponse">Show</button>
   </div>
 
 </div>
@@ -30,7 +30,7 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Write down the TxHash',
+          axiosjsonData: 'Null',
           txHash:''
       }
 

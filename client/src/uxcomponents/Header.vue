@@ -19,59 +19,6 @@
                                     ><i class="fa fa-close"></i></button>
                                 </form>
                             </div>
-
-
-
-                            <div class="dropdown for-message">
-                                <button
-                                    class="btn btn-secondary dropdown-toggle"
-                                    type="button"
-                                    id="message"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    :class="{'message-show': isMessage, '': !isMessage }"
-                                    @click="handleMessage"
-                                >
-                                    <i class="ti-email"></i>
-                                    <!-- <span class="count bg-primary">9</span>-->
-                                </button>
-                                <!-- <div class="dropdown-menu" aria-labelledby="message">
-                                    <p class="red">You have 4 Mails</p>
-                                    <a class="dropdown-item media bg-flat-color-1" href="#">
-                                        <span class="photo media-left"><img alt="avatar" src="../images/avatar/1.jpg"></span>
-                                        <div class="message media-body">
-                                            <span class="name float-left text-light">Jonathan Smith</span>
-                                            <span class="time float-right text-light">Just now</span>
-                                            <p class="text-light">Hello, this is an example msg</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-4" href="#">
-                                        <span class="photo media-left"><img alt="avatar" src="../images/avatar/2.jpg"></span>
-                                        <div class="message media-body">
-                                            <span class="name float-left text-light">Jack Sanders</span>
-                                            <span class="time float-right text-light">5 minutes ago</span>
-                                            <p class="text-light">Lorem ipsum dolor sit amet, consectetur</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-5" href="#">
-                                        <span class="photo media-left"><img alt="avatar" src="../images/avatar/3.jpg"></span>
-                                        <div class="message media-body">
-                                            <span class="name float-left text-light">Cheryl Wheeler</span>
-                                            <span class="time float-right text-light">10 minutes ago</span>
-                                            <p class="text-light">Hello, this is an example msg</p>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item media bg-flat-color-3" href="#">
-                                        <span class="photo media-left"><img alt="avatar" src="../images/avatar/4.jpg"></span>
-                                        <div class="message media-body">
-                                            <span class="name float-left text-light">Rachel Santos</span>
-                                            <span class="time float-right text-light">15 minutes ago</span>
-                                            <p class="text-light">Lorem ipsum dolor sit amet, consectetur</p>
-                                        </div>
-                                    </a>
-                                </div> -->
-                            </div>
                         </div>
                     </div>
                     <div class="col-sm-5" v-if="isLogin" style="position:fixed; right:15px; top:15px;">

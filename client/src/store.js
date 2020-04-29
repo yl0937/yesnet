@@ -56,11 +56,11 @@ export default new Vuex.Store({
                             router.push("/dashboard")
                         }
                     else {
-                        alert(' Check your Id&PW 1');
+                        alert(' Check your Id&PW ');
                         }
                 })
                 .catch(() => {
-                           alert(' Check your Id&PW 23');
+                           alert(' Check your Id&PW ');
                        })
             },
         register({ commit }, registerObj) {

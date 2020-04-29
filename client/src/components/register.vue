@@ -1,7 +1,6 @@
 <template >
 <div class="admin-container2">
   <div class="container-fluid" >
-  <div class="box"s></div>
     <div class="register">
                 <form @keydown.enter="register({Email,password,passwordConfirm,username})">
                 <div class="email">
@@ -67,16 +66,6 @@ import { mapState, mapActions } from "vuex"
         padding-right: 10%;
         padding-left: 10%;
     }
-     .box{
-          z-index:0;
-          height:600px;
-          width:500px;
-          color:#fff;
-          background:rgba(0,0,0,0.08);
-          padding:50px 0px;
-          transform: translate( 77%,15%);
-          border-radius: 15px;
-        }
     .email {
     position:relative;
           top:-5px;

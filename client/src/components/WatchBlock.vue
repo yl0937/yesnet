@@ -6,9 +6,9 @@
 	</p>
 
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
+  <input type="text" class="form-control" placeholder="write down your Block Number" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
   <div class="input-group-append">
-    <button class="btn btn-dark" type="button" @click="getJSONResponse">Search</button>
+    <button class="btn btn-dark" type="button" @click="getJSONResponse">show</button>
   </div>
 </div>
 
@@ -31,7 +31,7 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Write down the Block Number',
+          axiosjsonData: 'Null',
           blockNum: '',
           ticketInterval:null,
           ticketres:null
@@ -48,7 +48,7 @@ import JsonViewer from 'vue-json-viewer'
       this.blockNum = parseInt(this.blockNum)
 
     axios
-    .post('http://localhost:9999//dummyCall',
+    .post('http://localhost:9999/api/dummyCall',
         {'blockNum':this.blockNum},
         {
         headers: {

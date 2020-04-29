@@ -18,10 +18,18 @@
 
       <template v-slot:row-details="row">
         <b-card>
+           <div>
+             <b-table :items="items2" :fields="fields2" striped responsive="sm">
+               <template v-slot:cell(function)="row"></template>
+             </b-table>
+           </div>
+        </b-card>
+        <b-card>
           <div>
           <b-table-simple hover>
           <b-thead>
             <b-tr variant="secondary">
+              <b-td>Type</b-td>
               <b-td>Name</b-td>
               <b-td>Inputs</b-td>
               <b-td> </b-td>
@@ -29,7 +37,13 @@
           </b-thead>
           <b-tbody>
               <b-tr v-for="(item, index) in functionList">
-              <b-td>{{item.name}}</b-td>
+              <b-td>
+                  <div v-if="calltxcheck[index]==='A'">Call(params O)</div>
+                  <div v-else-if="calltxcheck[index]==='B'">Call(params X)</div>
+                  <div v-else-if="calltxcheck[index]==='C'">Tx(params O)</div>
+                  <div v-else>Tx(params X)</div>
+                </b-td>
+                <b-td>{{item.name}}</b-td>
               <b-td>{{item.inputs}}</b-td>
               <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">LaunchA</b-button></div>
               <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">LaunchB</b-button></div>
@@ -138,8 +152,10 @@ export default {
     name: 'first',
     data() {
         return {
-            fields: ['timestamp','gasUsed','contractAddress','function'],
+            fields: ['timestamp', 'gasUsed', 'contractAddress', 'function'],
+            fields2:[],
             items1: [],
+            items2:[],
             functionList: [],
             method: null,
             name: [],
@@ -157,7 +173,7 @@ export default {
             paramState: [],
             abi: null,
             arraydata: {},
-            dictObject:[]
+            dictObject: []
         }
     },
     methods: {
@@ -165,7 +181,7 @@ export default {
             this.arraydata.functionName = this.functionList[index].name
 
             this.functionNames.splice(0)
-            for(var input of this.functionList[index].inputs){
+            for (var input of this.functionList[index].inputs) {
                 this.functionNames.push(input.name)
             }
         },
@@ -181,7 +197,7 @@ export default {
                     }
                 })
                 .then(response => {
-                    for (var arr of response.data.payload){
+                    for (var arr of response.data.payload) {
                         //console.log(arr.timestamp)
                         let time = arr.timestamp
                         //console.log(time)
@@ -189,36 +205,36 @@ export default {
                         //console.log(changetime)
                         arr.timestamp = changetime
 
-                    let abi = arr.abi
-                    this.abi = abi
+                        let abi = arr.abi
+                        this.abi = abi
 
-                    this.calltxcheck.splice(0)
-                    for (var x of arr.funtions) {
-                        //console.log(x.name, typeof(x.constant), x.constant, x)
-                        this.dictObject = x.inputs
-                        var cons = Boolean(x.constant)
+                        this.calltxcheck.splice(0)
+                        for (var x of arr.funtions) {
+                            //console.log(x.name, typeof(x.constant), x.constant, x)
+                            this.dictObject = x.inputs
+                            var cons = Boolean(x.constant)
 
-                        if (cons) {
-                            //console.log(x.name, x.constant)
-                            if (this.dictObject.length > 0) {
-                                this.calltxcheck.push('A')
+                            if (cons) {
+                                //console.log(x.name, x.constant)
+                                if (this.dictObject.length > 0) {
+                                    this.calltxcheck.push('A')
+                                } else {
+                                    this.calltxcheck.push('B')
+                                }
+
                             } else {
-                                this.calltxcheck.push('B')
+                                if (this.dictObject.length > 0) {
+                                    this.calltxcheck.push('C')
+                                } else {
+                                    this.calltxcheck.push('D')
+                                }
                             }
+                            this.functionList = arr.funtions
 
                         }
-                        else {
-                            if (this.dictObject.length > 0) {
-                                this.calltxcheck.push('C')
-                            } else {
-                                this.calltxcheck.push('D')
-                            }
-                        }
-                        this.functionList = arr.funtions
-
-                    }
                     }
                     this.items1 = response.data.payload
+                    console.log(this.items2)
                 })
                 .catch(error => {
                     // eslint-disable-next-line no-console
@@ -265,7 +281,7 @@ export default {
             args_names = this.functionNames
 
             let paramintArr = []
-            for (var inte of this.paramArr){
+            for (var inte of this.paramArr) {
                 inte = parseInt(inte)
                 paramintArr.push(inte)
             }
@@ -416,9 +432,9 @@ export default {
                 })
         }
     },
-        created() {
-            this.getJSONResponse()
-        }
-    }
+    created() {
+        this.getJSONResponse()
+    },
+}
 
 </script>
