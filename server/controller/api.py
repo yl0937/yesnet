@@ -69,6 +69,7 @@ def login():
 
     # compare it with DB
     result = api_page.resource['mongo'].auth_user_by_email(login_email, login_pass)
+    print(result)
     if result['code'] == 200:
         # Login Success
         payload = {
@@ -192,7 +193,7 @@ def show_dapp(*args, **kwargs):
     results = api_page.resource['mongo'].find_dapp_by_email(email)
     # print(type(results), ":", results)
     response = json.dumps(results, default=json_util.default)
-    print(response)
+
 
     return response
 
@@ -515,8 +516,8 @@ def dapp_info(*args, **kwargs):
                     function_info['inputs'] = abi_info['inputs']
                     function_info['constant'] = abi_info['constant']
                     ret_val.append(function_info)
-            print(ret_val)
-            doc['funtions'] = ret_val
+
+            doc['functions'] = ret_val
             # {payload: [{timestamp:},{timestamp:} ]
         response = json.dumps(result, default=json_util.default)
         return response

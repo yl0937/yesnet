@@ -42,7 +42,6 @@ export default new Vuex.Store({
                 .then(res => {
                   console.log("test")
                     let response = res.data
-                    console.log(response)
                     if(response['code'] == '200')
                         {
                         sessionStorage.setItem("access_token", response['access_token'])

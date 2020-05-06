@@ -7,6 +7,7 @@
     </p>
   <div>
     <b-table :items="items1" :fields="fields" striped responsive="sm">
+
       <template v-slot:cell(function)="row">
         <b-button size="sm" @click="row.toggleDetails" class="mr-2">
           {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
@@ -18,11 +19,22 @@
 
       <template v-slot:row-details="row">
         <b-card>
-           <div>
-             <b-table :items="items2" :fields="fields2" striped responsive="sm">
-               <template v-slot:cell(function)="row"></template>
-             </b-table>
-           </div>
+         <div>
+           <b-table-simple hover>
+          <b-thead head-variant="dark">
+            <b-tr>
+              <b-td>block Number</b-td>
+              <b-td>block Hash</b-td>
+             </b-tr>
+          </b-thead>
+             <b-tbody>
+                <b-tr>
+                    <b-td>{{ row.item.blockNumber }}</b-td>
+                    <b-td>{{ row.item.blockHash }}</b-td>
+                </b-tr>
+               </b-tbody>
+           </b-table-simple>
+         </div>
         </b-card>
         <b-card>
           <div>
@@ -33,27 +45,28 @@
               <b-td>Name</b-td>
               <b-td>Inputs</b-td>
               <b-td> </b-td>
+
              </b-tr>
           </b-thead>
           <b-tbody>
-              <b-tr v-for="(item, index) in functionList">
-              <b-td>
+              <b-tr v-for="(item, index) in functionInfo">
+                <b-td>
                   <div v-if="calltxcheck[index]==='A'">Call(params O)</div>
                   <div v-else-if="calltxcheck[index]==='B'">Call(params X)</div>
                   <div v-else-if="calltxcheck[index]==='C'">Tx(params O)</div>
                   <div v-else>Tx(params X)</div>
                 </b-td>
-                <b-td>{{item.name}}</b-td>
-              <b-td>{{item.inputs}}</b-td>
+                <b-td>{{item[index].name}}</b-td>
+                <b-td>{{item[index].inputs}}</b-td>
               <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">LaunchA</b-button></div>
-              <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">LaunchB</b-button></div>
-              <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">LaunchC</b-button></div>
-              <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">LaunchD</b-button></div>
-              <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">Launch</b-button></div>
-              <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">Launch</b-button></div>
-              <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">Launch</b-button></div>
-              <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">Launch</b-button></div>
-              </b-td>
+                <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">LaunchB</b-button></div>
+               <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" clas s="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">LaunchC</b-button></div>
+               <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">LaunchD</b-button></div>
+                <b-td><div v-if="calltxcheck[index]==='A'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing2');functionEx(index)">Launch</b-button></div>
+                  <div v-else-if="calltxcheck[index]==='B'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('alertmodal');functionEx(index)">Launch</b-button></div>
+                  <div v-else-if="calltxcheck[index]==='C'"><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('modal-prevent-closing');functionEx(index)">Launch</b-button></div>
+                   <div v-else><b-button v-b-toggle="'collapse-2'" class="sm" size="sm" @click="$bvModal.show('txalertmodal');functionEx(index)">Launch</b-button></div>
+                </b-td>
               </b-td>
               </b-tr>
           </b-tbody>
@@ -61,9 +74,9 @@
             <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
               </div>
         </b-card>
-      </template>
-    </b-table>
-  </div>
+        </template>
+      </b-table>
+        </div>
   <div>
     <b-modal
       id="modal-prevent-closing"
@@ -147,16 +160,15 @@
 //import abi from './abi.vue';
 import axios from 'axios'
 import moment from 'moment'
-
 export default {
     name: 'first',
     data() {
         return {
             fields: ['timestamp', 'gasUsed', 'contractAddress', 'function'],
-            fields2:[],
             items1: [],
-            items2:[],
+            items2: [],
             functionList: [],
+            functionInfo: [],
             method: null,
             name: [],
             nameState: null,
@@ -173,21 +185,43 @@ export default {
             paramState: [],
             abi: null,
             arraydata: {},
-            dictObject: []
+            dictObject: [],
+
         }
     },
     methods: {
+        // functionInput(index) {
+        //     const token = sessionStorage.getItem("access_token")
+        //     const path ='http://localhost:9999/api/getDApp'
+        //     axios
+        //         .get(path, {
+        //             params: {},
+        //             headers: {
+        //                 "Authorization": token
+        //             }
+        //         })
+        //         .then(response => {
+        //             for (var info of response.data.payload[index].functionList) {
+        //                 var functionInfo = {}
+        //                 functionInfo['name'] = info.name
+        //                 functionInfo['inputs'] = info.inputs
+        //
+        //                 this.functionList.push(functionInfo)
+        //
+        //               }
+        //             console.log(this.functionList)
+        //             }
+        //           )
+        // },
         functionEx(index) {
-            this.arraydata.functionName = this.functionList[index].name
-
+            this.arraydata.functionName = items1.functionList[index].name
             this.functionNames.splice(0)
-            for (var input of this.functionList[index].inputs) {
+            for (var input of items1.functionList[index].inputs) {
                 this.functionNames.push(input.name)
             }
         },
         getJSONResponse() {
             const token = sessionStorage.getItem("access_token")
-            //console.log(token)
             const path = 'http://localhost:9999/api/getDApp'
             axios
                 .get(path, {
@@ -197,23 +231,42 @@ export default {
                     }
                 })
                 .then(response => {
+                    var local_items = []
                     for (var arr of response.data.payload) {
-                        //console.log(arr.timestamp)
+
                         let time = arr.timestamp
-                        //console.log(time)
                         let changetime = moment.unix(time).format('YYYY/MM/DD h:mm:ss a');
-                        //console.log(changetime)
-                        arr.timestamp = changetime
+                        // arr.timestamp = changetime
+
+                        var blockInfo = {}
+
+                        blockInfo['blockNumber'] = arr.blockNumber
+                        blockInfo['functionList'] = arr.functions
+                        blockInfo['blockHash'] = arr.blockHash
+                        blockInfo['gasUsed'] = arr.gasUsed
+                        blockInfo['contractAddress'] = arr.contractAddress
+                        blockInfo['timestamp'] = changetime
+                        this.functionInfo.push(arr.functions)
+
+
+                        local_items.push(blockInfo)
+                    }
+                    this.items1 = local_items
+                    console.log(this.items1)
+                    console.log(this.functionInfo)
 
                         let abi = arr.abi
-                        this.abi = abi
 
+                        this.abi = abi
                         this.calltxcheck.splice(0)
-                        for (var x of arr.funtions) {
+
+                        // this.BlockNumberList.push(arr.blockNumber)
+                        // this.BlockHashList.push(arr.blockHash)
+
+                        for (var x of arr.functions) {
                             //console.log(x.name, typeof(x.constant), x.constant, x)
                             this.dictObject = x.inputs
                             var cons = Boolean(x.constant)
-
                             if (cons) {
                                 //console.log(x.name, x.constant)
                                 if (this.dictObject.length > 0) {
@@ -221,7 +274,6 @@ export default {
                                 } else {
                                     this.calltxcheck.push('B')
                                 }
-
                             } else {
                                 if (this.dictObject.length > 0) {
                                     this.calltxcheck.push('C')
@@ -229,12 +281,11 @@ export default {
                                     this.calltxcheck.push('D')
                                 }
                             }
-                            this.functionList = arr.funtions
-
                         }
-                    }
-                    this.items1 = response.data.payload
-                    console.log(this.items2)
+                    this.items2 = response.data.payload
+                    // this.functionList = arr.functions
+
+
                 })
                 .catch(error => {
                     // eslint-disable-next-line no-console
@@ -273,13 +324,10 @@ export default {
         },
         argsPost() {
             let args = {}
-
             //let args_name
             let args_names = []
             let args_vals = []
-
             args_names = this.functionNames
-
             let paramintArr = []
             for (var inte of this.paramArr) {
                 inte = parseInt(inte)
@@ -332,12 +380,10 @@ export default {
         },
         txargsPost() {
             let args = {}
-
             //let args_name
             //let args_val
             let args_names = []
             let args_vals = []
-
             args_names = this.functionNames
             args_vals = this.name
             for (var a in args_names) {
@@ -385,7 +431,6 @@ export default {
                     // eslint-disable-next-line no-console
                     console.log(error)
                 })
-
         },
         notxargsPost() {
             for (var i of this.items1) {
@@ -407,7 +452,6 @@ export default {
                     // eslint-disable-next-line no-console
                     console.log(error)
                 })
-
         },
         alerthandleok() {
             this.noargsPost()
@@ -433,8 +477,7 @@ export default {
         }
     },
     created() {
-        this.getJSONResponse()
+        this.getJSONResponse();
     },
 }
-
 </script>
