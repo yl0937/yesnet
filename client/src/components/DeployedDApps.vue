@@ -21,8 +21,8 @@
         <b-card>
          <div>
            <b-table-simple hover>
-          <b-thead head-variant="dark">
-            <b-tr>
+          <b-thead>
+            <b-tr variant="secondary">
               <b-td>block Number</b-td>
               <b-td>block Hash</b-td>
              </b-tr>
@@ -45,7 +45,6 @@
               <b-td>Name</b-td>
               <b-td>Inputs</b-td>
               <b-td> </b-td>
-
              </b-tr>
           </b-thead>
           <b-tbody>

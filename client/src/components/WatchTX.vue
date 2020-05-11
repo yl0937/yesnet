@@ -18,6 +18,7 @@
     copyable
     boxed
     sort></json-viewer>
+
 </div>
   </div>
 </template>
@@ -30,7 +31,7 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Null',
+          axiosjsonData:'value is Empty',
           txHash:''
       }
 
@@ -51,12 +52,13 @@ import JsonViewer from 'vue-json-viewer'
                 "Authorization": token
             },
         })
-        .then(response => {
-        let code=response.data.result.code
-        let err_name=response.data.result.err_name
-        let reason=response.data.result.reason
 
-            this.axiosjsonData = response.data.result.txInfo
+        .then(response => {
+            this.axiosjsonData=response
+        // let code = response.data.result.code
+        // let err_name = response.data.result.err_name
+        // let reason = response.data.result.reason
+
 
         if(code != 200){
             alert(err_name+reason)

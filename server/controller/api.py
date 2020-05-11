@@ -147,7 +147,6 @@ def gettx(*args, **kwargs):
     print('getTx:', email)
     txHash = request.json['txHash']
     params = {"txHash": txHash}
-    print(params)
 
 
     # call core
@@ -155,6 +154,8 @@ def gettx(*args, **kwargs):
     result = core.getTx(payload)
 
     response = json.dumps(result, default=json_util.default)
+    print('-'*30)
+    print(result)
     return response
 
 
@@ -174,11 +175,11 @@ def getblock(*args, **kwargs):
 
 
     payload = {'params': params}
-    print(payload)
 
     # call core
     result = core.getBlock(payload)
     response = json.dumps(result, default=json_util.default)
+    print(response)
     return response
 
 
@@ -620,6 +621,8 @@ def dummycall(*args, **kwargs):
     # call core
     result = core.getBlock(payload)
     response = json.dumps(result, default=json_util.default)
+    print('-'*30)
+    print(response)
     return response
 
 

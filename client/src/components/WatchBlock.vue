@@ -8,7 +8,7 @@
 <div class="input-group mb-3">
   <input type="text" class="form-control" placeholder="write down your Block Number" aria-label="Receipient's usernam" aria-describedby="basic-addon2" v-model="blockNum">
   <div class="input-group-append">
-    <button class="btn btn-dark" type="button" @click="getJSONResponse">show</button>
+    <button class="btn btn-dark" type="button" @click="getJSONResponse">Show</button>
   </div>
 </div>
 
@@ -31,7 +31,7 @@ import JsonViewer from 'vue-json-viewer'
     data() {
       return {
           token:null,
-          axiosjsonData: 'Null',
+          axiosjsonData: 'value is Empty',
           blockNum: '',
           ticketInterval:null,
           ticketres:null
