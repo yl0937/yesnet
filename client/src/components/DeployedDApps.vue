@@ -189,29 +189,6 @@ export default {
         }
     },
     methods: {
-        // functionInput(index) {
-        //     const token = sessionStorage.getItem("access_token")
-        //     const path ='http://localhost:9999/api/getDApp'
-        //     axios
-        //         .get(path, {
-        //             params: {},
-        //             headers: {
-        //                 "Authorization": token
-        //             }
-        //         })
-        //         .then(response => {
-        //             for (var info of response.data.payload[index].functionList) {
-        //                 var functionInfo = {}
-        //                 functionInfo['name'] = info.name
-        //                 functionInfo['inputs'] = info.inputs
-        //
-        //                 this.functionList.push(functionInfo)
-        //
-        //               }
-        //             console.log(this.functionList)
-        //             }
-        //           )
-        // },
         functionEx(index) {
             this.arraydata.functionName = items1.functionList[index].name
             this.functionNames.splice(0)

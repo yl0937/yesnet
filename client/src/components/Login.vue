@@ -88,5 +88,16 @@ export default {
   top:30px;
   left:20px;
 }
+::-webkit-input-placeholder{
+  color: #cccccc;
+}
+ ::-moz-placeholder{
+    color: #cccccc;
+    opacity: 1;
+  }
+  :-moz-placeholder{
+    color: #cccccc;
+    opacity: 1;
+  }
 
 </style>

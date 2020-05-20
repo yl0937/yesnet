@@ -195,7 +195,6 @@ def show_dapp(*args, **kwargs):
     # print(type(results), ":", results)
     response = json.dumps(results, default=json_util.default)
 
-
     return response
 
 
@@ -245,6 +244,20 @@ def deploy(*args, **kwargs):
             # call core
             result = core.deployDApp(payload)
             response = json.dumps(result, default=json_util.default)
+            # new code
+            deployResult = result['deployResult']
+            deployed = {
+                'dapp_id': result['dapp_id'],
+                'owner_email': email,
+                'blockHash': deployResult['blockHash'],
+                'blockNumber': deployResult['blockNumber'],
+                'contractAddress': deployResult['contractAddress'],
+                'gasUsed': deployResult['gasUsed'],
+                'transactionHash': deployResult['transactionHash'],
+                'timestamp': zen_util.get_timestamp()
+            }
+            api_page.resource['mongo'].add_deployed(deployed)
+
             return response
         else:
             return dapp_info

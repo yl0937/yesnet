@@ -54,7 +54,10 @@ import JsonViewer from 'vue-json-viewer'
         })
 
         .then(response => {
-            this.axiosjsonData=response
+            let txInfo = response
+            delete(txInfo.data.txInfo.input)
+
+            this.axiosjsonData=txInfo
         // let code = response.data.result.code
         // let err_name = response.data.result.err_name
         // let reason = response.data.result.reason

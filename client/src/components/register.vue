@@ -7,7 +7,7 @@
                  Type your E-mail
                 </div>
                     <div class="form-group">
-                        <input type="text" style="background-color:transparent; width:400px; height:50px;" class="form-control" v-model="Email" name="Email" placeholder="Email">
+                        <input type="text" style="background-color:transparent; width:400px; height:50px; " class="form-control" v-model="Email" name="Email" placeholder="Email">
                     </div>
                     <div class="password">
                     Type your Password
@@ -93,4 +93,8 @@ import { mapState, mapActions } from "vuex"
           color:white;
           line-height: 2em;
     }
+ input::placeholder{
+    color: white;
+   opacity: 1;
+  }
 </style>

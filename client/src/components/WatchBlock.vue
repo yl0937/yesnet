@@ -34,7 +34,8 @@ import JsonViewer from 'vue-json-viewer'
           axiosjsonData: 'value is Empty',
           blockNum: '',
           ticketInterval:null,
-          ticketres:null
+          ticketres:null,
+          NewBlockInfo:'',
       }
 },
     components: {
@@ -65,10 +66,17 @@ import JsonViewer from 'vue-json-viewer'
         if(code != 200){
             alert(code+reason)
         }*/
-        this.axiosjsonData=response
+        let BlockInfo = response
+        delete(BlockInfo.data.blockInfo.logsBloom)
+
+        // let BlockInfo = delete(response.data.blockInfo.logsBloom)
+        this.axiosjsonData = BlockInfo
+
+
+
 
         this.ticketres=response.data.payload.ticket
-        console.log(this.ticketres)
+
 
         this.postTicket()
     })
